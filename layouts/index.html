@@ -3,27 +3,57 @@
 <section class="section bd-masthead">
   <div class="container-xxl">
     <div class="col-md-8 mx-auto text-center my-5">
-      <img class="d-block mx-auto mb-3" src="{{ `images/logo.svg` | relURL }}" width="150" height="150" alt="Bootstrap">
       <h1 class="display-4 fw-semibold mb-3">{{ .Site.Title }}</h1>
-      <p class="lead mb-4">{{ .Site.Params.Description }}</p>
-      <a class="btn btn-bd-primary btn-lg px-4 mb-2" href="https://github.com/filipecarneiro/hugo-bootstrap-theme" role="button">Get Started</a>
-      <p class="text-muted mb-0">Open-source MIT Licensed.</p>
+      <h4>Bienvenida(o)</h4>
+      <p class="lead mb-4">Este es un micrositio con los recursos para participar en la 
+        encuesta de salarios de Software Guru y para que puedas consultar los datos e información generada.</p>
+      <a class="btn btn-bd-primary btn-lg px-4 mb-2" href="/encuesta-2026" role="button">Contesta la encuesta</a>
+      <p class="text-muted mb-0">Si habías iniciado anteriormente, puedes seguir este enlace y continuar</p>
     </div>
   </div>
 </section>
 
-<section class="section container my-3">
-  {{ partial "features" . }}
+<section class="section container my-3" id="features">
+  <div class="row justify-content-center text-center mt-lg-3">
+    <div class="col-lg-4">
+        <svg xmlns='http://www.w3.org/2000/svg' class='feather text-violet feather-big' width="4em" height="4em">
+            <use href="{{ `images/feather/feather-sprite.svg#shield` | relURL }}"/>
+        </svg>
+        <h2 class="h2">La encuesta es anónima <small class="d-none">🛡️</small></h2>
+        <p>Sabemos que solicitamos datos sensibles, por lo que está instrumentada para realizarse
+          de forma anónima, y no tenemos forma de relacionar los datos contigo.</p>
+    </div>
+    <div class="col-lg-4">
+        <svg xmlns='http://www.w3.org/2000/svg' class='feather text-violet feather-big' width="4em" height="4em">
+            <use href="{{ `images/feather/feather-sprite.svg#clock` | relURL }}"/>
+        </svg>
+        <h2 class="h2">Puedes continuar una encuesta comenzada <small class="d-none">⏲️</small></h2>
+        <p>Si comenzaste a contestar la encuesta pero no la terminaste, al abrirla desde el mismo navegador deberías poder continuarla.</p>
+    </div>
+    <div class="col-lg-4">
+        <svg xmlns='http://www.w3.org/2000/svg' class='feather text-violet feather-big' width="4em" height="4em">
+            <use href="{{ `images/feather/feather-sprite.svg#eye` | relURL }}"/>
+        </svg>
+        <h2 class="h2">Dashboard de estadísticas <small class="d-none">👀</small></h2>
+        <p>Consulta el <a href="/dashboard">dashboard</a> con información preliminar.</p>
+    </div>
+    <div class="col-lg-4">
+        <svg xmlns='http://www.w3.org/2000/svg' class='feather text-violet feather-big' width="4em" height="4em">
+            <use href="{{ `images/feather/feather-sprite.svg#trending-up` | relURL }}"/>
+        </svg>
+        <h2 class="h2">Reporte <small class="d-none">🚀</small></h2>
+        <p>Con los datos generados realizaremos un reporte que compartiremos públicamente.</p>
+    </div>
+    <div class="col-lg-4">
+        <svg xmlns='http://www.w3.org/2000/svg' class='feather text-violet feather-big' width="4em" height="4em">
+            <use href="{{ `images/feather/feather-sprite.svg#book-open` | relURL }}"/>
+        </svg>
+        <h2 class="h2">Datos abiertos <small class="d-none">📖</small></h2>
+        <p>Los datos también se pueden descargar para que realices tu propio análisis.</p>
+    </div>
+</div>
+
 </section>
 
-<section class="section container my-3">
-  <h3 class="text-secondary text-center my-5">Latest Posts</h3>
-  {{ partial "latest-posts" . }}
-</section>
-
-<section class="section container my-3">
-  <h3 class="text-secondary text-center my-5">Featured Pages</h3>
-  {{ partial "featured-pages" . }}
-</section>
 
 {{ end }}
