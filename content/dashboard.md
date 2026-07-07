@@ -1,6 +1,10 @@
 ---
 title: "Dashboard"
 draft: false
+menu:
+  main:
+    weight: 2
+
 ---
 
 ### Dashboard

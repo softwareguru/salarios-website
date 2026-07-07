@@ -15,7 +15,7 @@ enableEmoji = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
-      
+
 [frontmatter]
   date = ["date", "publishDate", "lastmod"]
   lastmod = ["lastmod", ":fileModTime", ":default"]
@@ -24,3 +24,17 @@ enableEmoji = true
   changefreq = "weekly"
   filename = "sitemap.xml"
   priority = 0.5
+
+
+[module]
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+    
+[params]
+  [params.options]
+    bootStrapJs = true
+    breadCrumb = true
