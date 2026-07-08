@@ -1,6 +1,6 @@
 baseURL = 'https://example.org/'
 locale = 'en-us'
-title = 'Estudio de Salarios Software Guru'
+title = 'SG Tech Pulse'
 
 theme = "hugo-bootstrap"
 
@@ -33,7 +33,7 @@ enableEmoji = true
   [[module.mounts]]
     source = "static"
     target = "static"
-    
+
 [params]
   [params.options]
     bootStrapJs = true
