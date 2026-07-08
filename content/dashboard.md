@@ -9,9 +9,9 @@ menu:
 
 ### Dashboard
 
-Consulta algunas estadísticas en tiempo real. Puedes seleccionar elementos para filtrar los datos de acuerdo a tu selección.
+Consulta algunas estadísticas en tiempo real. Puedes seleccionar elementos/grupos para filtrar los datos de acuerdo a tu selección.
 
-**Dado que apenas estamos abriendo la encuesta todavía no contamos con suficientes datos para generar estadísticas y gráficas valiosas. Regresa en unos días que tengamos más datos para encontrar aquí información más nutrida.**
+**Dado que apenas estamos abriendo la encuesta todavía no contamos con suficientes datos para generar estadísticas y gráficas con buena representatividad. Regresa en unos días que tengamos más datos para encontrar aquí más y mejor información.**
 
 Recuerda que estas gráficas se generan con los datos en bruto antes de ser depurados, por lo que es posible que te encuentres con anomalías.
 
