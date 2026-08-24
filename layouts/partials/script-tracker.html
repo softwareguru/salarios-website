@@ -1,0 +1,23 @@
+<!-- EL SCRIPT SE AGREGA JUSTO AQUÍ (Antes de cerrar el body) -->
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        // 1. Detectar los parámetros de la URL actual
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmSource = urlParams.get('utm_source');
+        const utmMedium = urlParams.get('utm_medium');
+
+        // 2. Buscar el botón de la encuesta (usando su ID o clase)
+        const botonEncuesta = document.getElementById('btn-encuesta');
+
+        if (botonEncuesta && (utmSource || utmMedium)) {
+            const urlDestino = new URL(botonEncuesta.href);
+
+            // 3. Inyectar los parámetros de origen al enlace de SurveySparrow
+            if (utmSource) urlDestino.searchParams.set('utm_source', utmSource);
+            if (utmMedium) urlDestino.searchParams.set('utm_medium', utmMedium);
+
+            // 4. Actualizar el enlace final del botón
+            botonEncuesta.href = urlDestino.toString();
+        }
+    });
+    </script>
