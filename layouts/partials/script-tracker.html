@@ -1,23 +1,25 @@
-<!-- EL SCRIPT SE AGREGA JUSTO AQUÍ (Antes de cerrar el body) -->
+<!-- Propaga los parámetros UTM de la URL actual a todos los enlaces de la
+     encuesta (SurveySparrow los guarda como variables personalizadas por
+     respuesta, y de ahí siguen al webhook y al reporte de atribución). -->
     <script>
     window.addEventListener('DOMContentLoaded', () => {
-        // 1. Detectar los parámetros de la URL actual
+        // 1. Detectar los parámetros UTM de la URL actual
         const urlParams = new URLSearchParams(window.location.search);
-        const utmSource = urlParams.get('utm_source');
-        const utmMedium = urlParams.get('utm_medium');
+        const utms = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
+            .filter(k => urlParams.get(k));
+        if (!utms.length) return;
 
-        // 2. Buscar el botón de la encuesta (usando su ID o clase)
-        const botonEncuesta = document.getElementById('btn-encuesta');
+        // 2. Buscar todo enlace hacia SurveySparrow (no depende de un id)
+        document.querySelectorAll('a[href*="surveysparrow.com"]').forEach(enlace => {
+            try {
+                const urlDestino = new URL(enlace.href);
 
-        if (botonEncuesta && (utmSource || utmMedium)) {
-            const urlDestino = new URL(botonEncuesta.href);
+                // 3. Inyectar los parámetros de origen al enlace
+                utms.forEach(k => urlDestino.searchParams.set(k, urlParams.get(k)));
 
-            // 3. Inyectar los parámetros de origen al enlace de SurveySparrow
-            if (utmSource) urlDestino.searchParams.set('utm_source', utmSource);
-            if (utmMedium) urlDestino.searchParams.set('utm_medium', utmMedium);
-
-            // 4. Actualizar el enlace final del botón
-            botonEncuesta.href = urlDestino.toString();
-        }
+                // 4. Actualizar el enlace final
+                enlace.href = urlDestino.toString();
+            } catch (e) { /* enlace relativo o malformado: ignorar */ }
+        });
     });
     </script>
