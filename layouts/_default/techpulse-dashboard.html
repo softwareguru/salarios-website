@@ -1,0 +1,261 @@
+{{- /* SG Tech Pulse 2026 · plantilla propia, independiente del tema bootstrap.
+     Se mantiene el contenedor de Tag Manager y la propagación de UTM. */ -}}
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Title }}</title>
+<meta name="description" content="{{ .Params.description }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ .Params.description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:image" content="{{ ((resources.Get "images/brand/og-techpulse.png").Resize "1200x png").Permalink }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ .Params.description }}">
+<meta name="twitter:image" content="{{ ((resources.Get "images/brand/og-techpulse.png").Resize "1200x png").Permalink }}">
+<link rel="icon" href="{{ ((resources.Get "images/brand/isotipo-plasta.png").Resize "180x png").RelPermalink }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+{{- $css := resources.Get "css/techpulse.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- partial "head/google-tag-manager.html" . }}
+{{- partial "head/google-tag.html" . }}
+</head>
+<body>
+{{ partial "google-tag-manager-noscript.html" . }}
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="{{ "" | relURL }}" aria-label="Tech Pulse 2026, Encuesta de Salarios de SG Software Guru">
+      <img class="lg-light" src="{{ ((resources.Get "images/brand/logo-negro.png").Resize "440x webp q80").RelPermalink }}" alt="SG Tech Pulse 2026 · Encuesta de Salarios" width="440" height="102">
+      <img class="lg-dark"  src="{{ ((resources.Get "images/brand/logo-blanco.png").Resize "440x webp q80").RelPermalink }}" width="440" height="102" alt="">
+    </a>
+    <div class="nav-links" id="nav-menu">
+      <a class="hide-sm" href="{{ "" | relURL }}">Inicio</a>
+      <a class="hide-sm" href="{{ "dashboard/" | relURL }}" aria-current="page" style="color:var(--tx)">Dashboard</a>
+      <a class="hide-sm" href="{{ "about/" | relURL }}">Acerca de</a>
+      <span class="nav-controls">
+        <button class="theme-btn" id="theme-toggle" type="button" aria-label="Cambiar entre tema claro y oscuro">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+          </svg>
+          <span class="lbl-light">Claro</span><span class="lbl-dark">Oscuro</span>
+        </button>
+      </span>
+      <a class="btn btn-primary btn-sm" href="{{ site.Params.surveyURL }}" target="_blank" rel="noopener noreferrer">Participar</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" type="button"
+            aria-expanded="false" aria-controls="nav-menu"
+            aria-label="Abrir el menú de navegación">
+      <svg class="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="goo-fine" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3.2" result="b"/>
+      <feColorMatrix in="b" mode="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -13"/>
+    </filter>
+  </defs>
+</svg>
+
+<header class="page-head" id="top">
+  <span id="main" tabindex="-1"></span>
+  <div class="wrap">
+    <p class="eyebrow">Informaci&oacute;n para la comunidad</p>
+    <h1>Lo que aprendemos vuelve al mercado.</h1>
+    <p class="lead">
+      Los resultados agregados est&aacute;n disponibles conforme avanza la encuesta.
+      Puedes explorarlos por rol, seniority y ubicaci&oacute;n, o consultar los datos
+      anonimizados para realizar tu propio an&aacute;lisis.
+    </p>
+
+    <div class="stats">
+      <div class="stat s-violet">
+        <div class="v">Desde 2010</div>
+        <div class="k">Distintas ediciones observando el mercado tech</div>
+      </div>
+      <div class="stat s-lime">
+        <div class="v">9&ndash;11<span style="font-size:.6em"> min</span></div>
+        <div class="k">Tiempo estimado para responder</div>
+      </div>
+      <div class="stat s-coral">
+        <div class="v">Abiertos</div>
+        <div class="k">Resultados disponibles para la comunidad</div>
+      </div>
+      <div class="stat s-lav">
+        <div class="v">Sin paywall</div>
+        <div class="k">No hay reporte premium ni contenido de pago</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section style="padding-top:24px;padding-bottom:40px">
+  <div class="wrap">
+
+    <div class="progress-card">
+      <div class="progress-top">
+        <h2>C&oacute;mo interpretar lo que ves</h2>
+      </div>
+      <p class="bar-note" style="margin-top:14px">
+        La encuesta sigue abierta, as&iacute; que las cifras de este tablero son
+        provisionales y se actualizan conforme llegan respuestas. Los cortes con
+        m&aacute;s participaci&oacute;n &mdash;los roles y ciudades m&aacute;s comunes&mdash; son los que
+        primero alcanzan una lectura estable; los cortes finos necesitan m&aacute;s
+        volumen. <b>Cada respuesta acerca ese umbral.</b>
+      </p>
+    </div>
+
+    <div class="board-wrap">
+      <div class="board-bar">
+        <span class="who">Tablero interactivo &middot; Looker Studio</span>
+        <a class="btn btn-ghost btn-sm" href="https://lookerstudio.google.com/reporting/4bbcc4b4-9f31-4ac9-b308-95ccecfc9859/page/1TI3F" target="_blank" rel="noopener noreferrer">
+          Abrir en pantalla completa
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 5H5a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-5"/></svg>
+        </a>
+      </div>
+
+      <!-- En producción, el iframe ocupa este marco. Se conserva la relación
+           10:7 del reporte (1000x700) para que no aparezcan barras internas.
+           Sustituir el marcador por:
+
+           <iframe class="board-embed" title="Resultados de SG Tech Pulse 2026"
+             src="https://lookerstudio.google.com/embed/reporting/4bbcc4b4-9f31-4ac9-b308-95ccecfc9859/page/1TI3F"
+             loading="lazy" allowfullscreen
+             sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+      -->
+      <div class="board-frame">
+        <div class="board-slot">
+          <svg class="skeleton" viewBox="0 0 1000 700" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+            <g filter="url(#goo-fine)">
+              <circle cx="120" cy="90"  r="16" fill="#BBA3FC"/>
+              <circle cx="152" cy="104" r="10" fill="#BBA3FC"/>
+              <circle cx="880" cy="120" r="20" fill="#6B3DFA"/>
+              <circle cx="846" cy="140" r="12" fill="#6B3DFA"/>
+              <circle cx="150" cy="600" r="18" fill="#C4E833"/>
+              <circle cx="188" cy="618" r="11" fill="#C4E833"/>
+              <circle cx="870" cy="580" r="15" fill="#FD655C"/>
+              <circle cx="840" cy="604" r="9"  fill="#FD655C"/>
+              <circle cx="500" cy="60"  r="9"  fill="#BBA3FC"/>
+              <circle cx="520" cy="650" r="11" fill="#BBA3FC"/>
+            </g>
+          </svg>
+          <p class="msg">
+            <b>Espacio reservado para el tablero en vivo.</b><br>
+            En el sitio real, el reporte de Looker Studio ocupa este marco
+            completo. El navegador de previsualizaci&oacute;n bloquea los iframes
+            externos, por eso aqu&iacute; se ve el marcador.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="alt" style="padding:64px 0;position:relative;overflow:hidden">
+  <img class="watermark" src="{{ ((resources.Get "images/brand/isotipo-outline.png").Resize "560x webp q78").RelPermalink }}" width="380" height="377" loading="lazy" alt="" aria-hidden="true" style="right:-100px;bottom:-40px">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:28px">
+      <p class="eyebrow">C&oacute;mo leer esto</p>
+      <h2 style="font-size:clamp(28px,4vw,40px)">Tres advertencias honestas.</h2>
+    </div>
+    <div class="reading">
+      <article class="read-card r-1">
+        <span class="tag">Antes de depurar</span>
+        <h3>Sin depurar</h3>
+        <p>
+          Las gr&aacute;ficas se generan antes de la limpieza, as&iacute; que puedes encontrar
+          valores at&iacute;picos o capturas err&oacute;neas. El reporte final s&iacute; pasa por depuraci&oacute;n.
+        </p>
+      </article>
+      <article class="read-card r-2">
+        <span class="tag">Representatividad</span>
+        <h3>No todos los cortes pesan igual</h3>
+        <p>
+          Un rol con 400 respuestas dice mucho; uno con 7 no dice casi nada.
+          Revisa el tama&ntilde;o de cada grupo antes de sacar conclusiones.
+        </p>
+      </article>
+      <article class="read-card r-3">
+        <span class="tag">En movimiento</span>
+        <h3>Las cifras van a cambiar</h3>
+        <p>
+          Mientras la encuesta siga abierta, cada n&uacute;mero es provisional.
+          Si vas a citarlo, anota la fecha de consulta.
+        </p>
+      </article>
+    </div>
+
+    <div class="raw">
+      <div>
+        <h3>Ll&eacute;vate los datos</h3>
+        <p>
+          Los datos anonimizados est&aacute;n disponibles sin registro ni costo, para que
+          reproduzcas el an&aacute;lisis o construyas el tuyo.
+        </p>
+      </div>
+      <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1HHaA8ezZ7odVt_cLneeo-QAqcd-1zLWBu42bmVJgZak/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+        Consultar los datos
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 12l6 6 6-6M4 20h16"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:64px 0 84px">
+  <div class="wrap">
+    <div class="closing">
+      <img class="closing-mol-img" src="{{ ((resources.Get "images/brand/isotipo.png").Resize "480x webp q78").RelPermalink }}" width="340" height="337" loading="lazy" alt="" aria-hidden="true">
+      <p class="eyebrow" style="color:#7D776C">Toma entre 9 y 11 minutos</p>
+      <h2>Ay&uacute;danos a contar la historia del talento tech latino.</h2>
+      <p>
+        Si trabajas en tecnolog&iacute;a &mdash;en cualquier pa&iacute;s de Latinoam&eacute;rica, o como
+        profesional latino en Estados Unidos o Canad&aacute;&mdash; tu experiencia puede
+        ayudarnos a entender c&oacute;mo est&aacute; cambiando el mercado.
+      </p>
+      <a class="btn btn-primary" href="{{ site.Params.surveyURL }}" target="_blank" rel="noopener noreferrer">
+        Participar en la encuesta
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="{{ "" | relURL }}" aria-label="Tech Pulse 2026, Encuesta de Salarios de SG Software Guru">
+      <img class="lg-light" src="{{ ((resources.Get "images/brand/logo-negro.png").Resize "440x webp q80").RelPermalink }}" alt="SG Tech Pulse 2026 · Encuesta de Salarios" width="440" height="102">
+      <img class="lg-dark"  src="{{ ((resources.Get "images/brand/logo-blanco.png").Resize "440x webp q80").RelPermalink }}" width="440" height="102" alt="">
+    </a>
+      <p class="foot-note" style="margin:10px 0 0;max-width:44ch">Una iniciativa de SG Software Guru, agencia de Developer Relations y bureau de inteligencia del mercado tech.</p>
+    </div>
+    <div class="foot-links">
+      <a href="{{ "" | relURL }}">Inicio</a>
+      <a href="{{ "about/" | relURL }}">Acerca de</a>
+      <a href="{{ "privacy-policy/" | relURL }}">Privacidad</a>
+      <a href="{{ "code-of-conduct/" | relURL }}">C&oacute;digo de conducta</a>
+    </div>
+  </div>
+</footer>
+{{- $js := resources.Get "js/techpulse.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{ partial "script-tracker.html" . }}
+</body>
+</html>

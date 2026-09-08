@@ -1,5 +1,7 @@
 ---
-title: "Dashboard"
+title: "Dashboard SG Tech Pulse 2026"
+layout: techpulse-dashboard
+description: "Resultados abiertos de SG Tech Pulse 2026, la encuesta de salarios tech en Latinoamérica. Datos disponibles para la comunidad."
 draft: false
 menu:
   main:

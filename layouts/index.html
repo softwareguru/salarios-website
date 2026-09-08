@@ -1,72 +1,555 @@
-{{ define "main" }}
-
+{{- /* SG Tech Pulse 2026 · plantilla propia, independiente del tema bootstrap.
+     Se mantiene el contenedor de Tag Manager y la propagación de UTM. */ -}}
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Title }}</title>
+<meta name="description" content="{{ .Params.description }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ .Params.description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:image" content="{{ ((resources.Get "images/brand/og-techpulse.png").Resize "1200x png").Permalink }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ .Params.description }}">
+<meta name="twitter:image" content="{{ ((resources.Get "images/brand/og-techpulse.png").Resize "1200x png").Permalink }}">
+<link rel="icon" href="{{ ((resources.Get "images/brand/isotipo-plasta.png").Resize "180x png").RelPermalink }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+{{- $css := resources.Get "css/techpulse.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- partial "head/google-tag-manager.html" . }}
+{{- partial "head/google-tag.html" . }}
+</head>
+<body>
 {{ partial "google-tag-manager-noscript.html" . }}
+<a class="skip" href="#main">Saltar al contenido</a>
 
-<section class="section bd-masthead">
-  <div class="container-xxl">
-    <div class="col-md-8 mx-auto text-center my-5">
-      <h1 class="display-4 fw-semibold mb-3">{{ .Site.Title }}</h1>
-      <h4>Estudio de Salarios, IA, Diversidad e Inclusión y Carreras Tecnológicas en LATAM.</h4>
-      <p class="lead mb-4">Participa en el estudio más completo sobre salarios, inteligencia artificial, trabajo remoto, diversidad e inclusión y la evolución profesional en Latinoamérica.</p>
-      <a class="btn btn-bd-primary btn-lg px-4 mb-2" href="https://softwareguru.surveysparrow.com/s/encuesta-salarios-sg-2026/tt-zzExe" role="button">Contesta la encuesta</a>
-      <p class="text-muted mb-1">🕒 9-11 minutos.
-      <p class="text-muted mb-0">Si habías iniciado anteriormente, puedes seguir este enlace y continuar donde te habías quedado.</p>
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Tech Pulse 2026, Encuesta de Salarios de SG Software Guru">
+      <img class="lg-light" src="{{ ((resources.Get "images/brand/logo-negro.png").Resize "440x webp q80").RelPermalink }}" alt="SG Tech Pulse 2026 · Encuesta de Salarios" width="440" height="102">
+      <img class="lg-dark"  src="{{ ((resources.Get "images/brand/logo-blanco.png").Resize "440x webp q80").RelPermalink }}" width="440" height="102" alt="">
+    </a>
+    <div class="nav-links" id="nav-menu">
+      <a class="hide-sm" href="#investigamos">Qu&eacute; investigamos</a>
+      <a class="hide-sm" href="#sirve">Para qu&eacute; sirve</a>
+      <a class="hide-sm" href="#trayectoria">Trayectoria</a>
+      <a class="hide-sm" href="{{ "dashboard/" | relURL }}">Dashboard</a>
+      <a class="hide-sm" href="{{ "about/" | relURL }}">Acerca de</a>
+      <span class="nav-controls">
+        <button class="theme-btn" id="theme-toggle" type="button" aria-label="Cambiar entre tema claro y oscuro">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+          </svg>
+          <span class="lbl-light">Claro</span><span class="lbl-dark">Oscuro</span>
+        </button>
+        <button class="motion-btn" id="motion-toggle" type="button" aria-label="Pausar las animaciones">
+          <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+          <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>
+        </button>
+      </span>
+      <a class="btn btn-primary btn-sm" href="{{ site.Params.surveyURL }}" target="_blank" rel="noopener noreferrer">Participar</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" type="button"
+            aria-expanded="false" aria-controls="nav-menu"
+            aria-label="Abrir el men&uacute; de navegaci&oacute;n">
+      <svg class="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="goo" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="b"/>
+      <feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11"/>
+    </filter>
+    <filter id="goo-fine" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3.2" result="b"/>
+      <feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -13"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ══ HERO ══ -->
+<header class="hero" id="top">
+  <span id="main" tabindex="-1"></span>
+  <canvas id="pulse-canvas" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <p class="eyebrow">SG Tech Pulse 2026 &middot; Encuesta de Salarios</p>
+    <h1>El mercado tech cambi&oacute;.<br>Es hora de <span class="accent">volver a medirlo</span>.</h1>
+    <p class="hero-lead">
+      La inteligencia artificial, el trabajo remoto y las nuevas formas de
+      contrataci&oacute;n est&aacute;n redefiniendo las carreras y compensaciones en
+      tecnolog&iacute;a.
+    </p>
+    <p class="hero-lead" style="margin-top:14px">
+      SG Tech Pulse 2026 investiga qui&eacute;n es hoy el talento tech en
+      Latinoam&eacute;rica, cu&aacute;nto gana y qu&eacute; factores hacen la diferencia.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="{{ site.Params.surveyURL }}" target="_blank" rel="noopener noreferrer">
+        Participar en la encuesta
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="{{ "dashboard/" | relURL }}">Consultar resultados</a>
+    </div>
+    <p class="hero-note">An&oacute;nima &middot; 9&ndash;11 minutos &middot; Puedes retomarla despu&eacute;s</p>
+  </div>
+</header>
+
+<!-- ══ 1 · POR QUÉ AHORA ══ -->
+<section class="alt" id="cambio" style="position:relative;overflow:hidden">
+  <img class="watermark" src="{{ ((resources.Get "images/brand/isotipo-outline.png").Resize "560x webp q78").RelPermalink }}" width="380" height="377" loading="lazy" alt="" aria-hidden="true" style="right:-90px;top:40px">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Por qu&eacute; ahora</p>
+      <h2>No queremos repetir lo que ya sab&iacute;amos. Queremos entender lo que cambi&oacute;.</h2>
+      <p>
+        En SG trabajamos en la intersecci&oacute;n entre talento, comunidades y
+        compa&ntilde;&iacute;as tecnol&oacute;gicas. Como agencia de Developer Relations y bureau
+        de inteligencia del mercado tech, acompa&ntilde;amos de cerca las
+        transformaciones que est&aacute;n redefiniendo el trabajo.
+      </p>
+      <p>
+        Esas transformaciones nos llevan a investigar nuevamente el mercado con
+        preguntas relevantes para el momento que estamos viviendo.
+      </p>
+    </div>
+
+    <div class="promises">
+      <article class="promise rise">
+        <span class="ic" style="background:var(--violet)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+        </span>
+        <div>
+          <h3>Un mercado en transformaci&oacute;n</h3>
+          <p>El trabajo remoto, los equipos distribuidos y las nuevas formas de contrataci&oacute;n cambiaron d&oacute;nde trabajamos, para qui&eacute;n trabajamos y c&oacute;mo se define nuestra compensaci&oacute;n.</p>
+        </div>
+      </article>
+      <article class="promise rise">
+        <span class="ic" style="background:var(--lime)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#171716" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20V7"/></svg>
+        </span>
+        <div>
+          <h3>Nuevos factores de diferenciaci&oacute;n</h3>
+          <p>La experiencia sigue importando, pero queremos entender cu&aacute;nto pesan hoy el ingl&eacute;s, la especializaci&oacute;n, el rol, el stack, el liderazgo y la capacidad de trabajar con inteligencia artificial.</p>
+        </div>
+      </article>
+      <article class="promise rise">
+        <span class="ic" style="background:var(--coral)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 8h5M14 16h5"/></svg>
+        </span>
+        <div>
+          <h3>Brechas que necesitan evidencia</h3>
+          <p>La conversaci&oacute;n sobre diversidad avanz&oacute;, pero necesitamos datos actualizados para saber d&oacute;nde persisten las diferencias de acceso, crecimiento y compensaci&oacute;n.</p>
+        </div>
+      </article>
+      <article class="promise rise">
+        <span class="ic" style="background:var(--lavender)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#171716" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 9h6v6H9zM12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+        </span>
+        <div>
+          <h3>La IA est&aacute; redefiniendo el trabajo</h3>
+          <p>Queremos investigar c&oacute;mo la inteligencia artificial est&aacute; modificando las tareas, los perfiles, las expectativas y las trayectorias profesionales en tecnolog&iacute;a.</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="step-note">
+      Cada respuesta aporta una parte de la evidencia que necesitamos para
+      entender el mercado como es hoy.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 2 · QUÉ QUEREMOS ENTENDER ══ -->
+<section id="investigamos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Las preguntas de esta edici&oacute;n</p>
+      <h2>El salario es el punto de partida. La historia es mucho m&aacute;s amplia.</h2>
+      <p>
+        SG Tech Pulse no busca solamente ordenar sueldos. Queremos entender qu&eacute;
+        factores est&aacute;n transformando el valor del talento y d&oacute;nde est&aacute;n las
+        principales oportunidades del mercado.
+      </p>
+    </div>
+
+    <div class="reveals">
+      <article class="reveal wide rise">
+        <figure>
+          <svg viewBox="0 0 300 104" role="img" aria-label="Cúmulos dispersos de distinta densidad, como ciudades en un mapa">
+            <line class="link-line" x1="66" y1="46" x2="176" y2="66" stroke="#C4E833" stroke-width="1.5"/>
+            <line class="link-line" x1="176" y1="66" x2="252" y2="36" stroke="#C4E833" stroke-width="1.5"/>
+            <g filter="url(#goo-fine)">
+              <circle cx="54"  cy="38" r="12" fill="#C4E833"/>
+              <circle cx="80"  cy="54" r="9"  fill="#C4E833"/>
+              <circle cx="40"  cy="60" r="7"  fill="#C4E833"/>
+              <circle cx="172" cy="64" r="9"  fill="#6B3DFA"/>
+              <circle cx="194" cy="78" r="6"  fill="#6B3DFA"/>
+              <circle cx="252" cy="30" r="8"  fill="#BBA3FC"/>
+              <circle cx="272" cy="46" r="5"  fill="#BBA3FC"/>
+              <circle cx="126" cy="22" r="4"  fill="#BBA3FC"/>
+              <circle cx="228" cy="88" r="4"  fill="#BBA3FC"/>
+            </g>
+          </svg>
+        </figure>
+        <h3>Qui&eacute;n es el talento tech hoy</h3>
+        <p class="q">&iquest;Qu&eacute; perfiles est&aacute;n construyendo tecnolog&iacute;a? &iquest;D&oacute;nde viven? &iquest;C&oacute;mo trabajan? &iquest;Qu&eacute; experiencia, formaci&oacute;n y especializaci&oacute;n tienen?</p>
+      </article>
+      <article class="reveal wide rise">
+        <figure>
+          <svg viewBox="0 0 300 104" role="img" aria-label="Cúmulos de tamaño creciente, de menor a mayor compensación">
+            <line class="link-line" x1="40" y1="86" x2="264" y2="30" stroke="#6B3DFA" stroke-width="1.5"/>
+            <g filter="url(#goo-fine)">
+              <circle cx="38"  cy="84" r="6"  fill="#BBA3FC"/>
+              <circle cx="96"  cy="74" r="9"  fill="#BBA3FC"/>
+              <circle cx="114" cy="88" r="6"  fill="#BBA3FC"/>
+              <circle cx="168" cy="58" r="12" fill="#6B3DFA"/>
+              <circle cx="190" cy="76" r="8"  fill="#6B3DFA"/>
+              <circle cx="146" cy="78" r="6"  fill="#6B3DFA"/>
+              <circle cx="250" cy="34" r="15" fill="#6B3DFA"/>
+              <circle cx="274" cy="58" r="9"  fill="#6B3DFA"/>
+              <circle cx="222" cy="56" r="8"  fill="#C4E833"/>
+            </g>
+          </svg>
+        </figure>
+        <h3>Qu&eacute; determina cu&aacute;nto gana</h3>
+        <p class="q">&iquest;Cu&aacute;nto pesan el rol, la experiencia, el ingl&eacute;s, el stack, la ubicaci&oacute;n, el tipo de compa&ntilde;&iacute;a y la modalidad de contrataci&oacute;n?</p>
+      </article>
+      <article class="reveal rise">
+        <figure>
+          <svg viewBox="0 0 300 104" role="img" aria-label="Dos cúmulos de moléculas a distinta altura, con la separación marcada">
+            <line class="link-line" x1="78" y1="34" x2="222" y2="34" stroke="#FD655C" stroke-width="1.5"/>
+            <line class="link-line" x1="222" y1="34" x2="222" y2="70" stroke="#FD655C" stroke-width="1.5"/>
+            <g filter="url(#goo-fine)">
+              <circle cx="44"  cy="28" r="10" fill="#6B3DFA"/>
+              <circle cx="72"  cy="24" r="8"  fill="#6B3DFA"/>
+              <circle cx="60"  cy="47" r="7"  fill="#BBA3FC"/>
+              <circle cx="32"  cy="49" r="6"  fill="#BBA3FC"/>
+              <circle cx="212" cy="76" r="10" fill="#FD655C"/>
+              <circle cx="240" cy="72" r="8"  fill="#FD655C"/>
+              <circle cx="228" cy="94" r="6"  fill="#FD655C" opacity=".6"/>
+              <circle cx="192" cy="95" r="5"  fill="#FD655C" opacity=".6"/>
+            </g>
+          </svg>
+        </figure>
+        <h3>C&oacute;mo est&aacute; evolucionando la brecha de g&eacute;nero</h3>
+        <p class="q">&iquest;D&oacute;nde persisten las diferencias de compensaci&oacute;n y crecimiento? &iquest;Cambian seg&uacute;n el rol, el seniority o el tipo de organizaci&oacute;n?</p>
+      </article>
+      <article class="reveal rise">
+        <figure>
+          <svg viewBox="0 0 300 104" role="img" aria-label="Moléculas que migran de un cúmulo a otro">
+            <line class="link-line" x1="74" y1="52" x2="226" y2="52" stroke="#6B3DFA" stroke-width="1.5"/>
+            <g filter="url(#goo-fine)">
+              <circle cx="48"  cy="42" r="11" fill="#BBA3FC"/>
+              <circle cx="72"  cy="60" r="8"  fill="#BBA3FC"/>
+              <circle cx="32"  cy="64" r="6"  fill="#BBA3FC"/>
+              <circle cx="118" cy="50" r="5"  fill="#6B3DFA" opacity=".5"/>
+              <circle cx="152" cy="54" r="6"  fill="#6B3DFA" opacity=".68"/>
+              <circle cx="186" cy="46" r="7"  fill="#6B3DFA" opacity=".84"/>
+              <circle cx="246" cy="44" r="13" fill="#6B3DFA"/>
+              <circle cx="224" cy="64" r="9"  fill="#6B3DFA"/>
+              <circle cx="270" cy="68" r="7"  fill="#C4E833"/>
+            </g>
+          </svg>
+        </figure>
+        <h3>Qu&eacute; impacto est&aacute; teniendo la IA</h3>
+        <p class="q">&iquest;C&oacute;mo est&aacute; cambiando las tareas, la productividad y las expectativas sobre los perfiles tecnol&oacute;gicos? &iquest;Est&aacute; creando nuevas oportunidades o ampliando brechas existentes?</p>
+      </article>
+      <article class="reveal rise">
+        <figure>
+          <svg viewBox="0 0 300 104" role="img" aria-label="Un cúmulo muy denso al centro y pocas moléculas sueltas alrededor">
+            <line class="link-line" x1="150" y1="52" x2="52"  y2="30" stroke="#BBA3FC" stroke-width="1.5"/>
+            <line class="link-line" x1="150" y1="52" x2="256" y2="78" stroke="#BBA3FC" stroke-width="1.5"/>
+            <g filter="url(#goo-fine)">
+              <circle cx="150" cy="52" r="14" fill="#BBA3FC"/>
+              <circle cx="124" cy="36" r="10" fill="#BBA3FC"/>
+              <circle cx="176" cy="36" r="9"  fill="#6B3DFA"/>
+              <circle cx="176" cy="72" r="10" fill="#BBA3FC"/>
+              <circle cx="124" cy="70" r="8"  fill="#6B3DFA"/>
+              <circle cx="150" cy="22" r="6"  fill="#BBA3FC"/>
+              <circle cx="46"  cy="28" r="5"  fill="#BBA3FC" opacity=".65"/>
+              <circle cx="262" cy="80" r="5"  fill="#BBA3FC" opacity=".65"/>
+              <circle cx="60"  cy="84" r="4"  fill="#BBA3FC" opacity=".65"/>
+            </g>
+          </svg>
+        </figure>
+        <h3>Qu&eacute; ayuda realmente a diferenciarse</h3>
+        <p class="q">&iquest;Qu&eacute; capacidades, experiencias y conocimientos est&aacute;n relacionados con mejores oportunidades profesionales?</p>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="section container my-2" id="features">
-  <h2 class="text-center">¿Por qué participar?</h2>
-  <div class="row justify-content-center text-center mt-lg-4">
-    <div class="col-lg-4 my-3">
-        <svg xmlns='http://www.w3.org/2000/svg' class='feather text-violet feather-big' width="4em" height="4em">
-            <use href="{{ `images/feather/feather-sprite.svg#code` | relURL }}"/>
-        </svg>
-        <h4>Diseñada específicamente para perfiles de tecnología <small class="d-none">🖐️</small></h4>
-        <p>Dada su especialización, la información obtenida es de gran valor para los profesionistas de tecnología.</p>
+<!-- ══ 3 · PARA QUÉ SIRVE ══ -->
+<section class="alt" id="sirve">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">De los datos a las decisiones</p>
+      <h2>Queremos convertir los cambios del mercado en informaci&oacute;n &uacute;til.</h2>
+      <p>
+        Nuestro objetivo es encontrar la informaci&oacute;n que nos permita contar mejor
+        la historia del talento tech, identificar puntos de oportunidad y ayudar a
+        que las personas y las compa&ntilde;&iacute;as tomen mejores decisiones.
+      </p>
     </div>
-    <div class="col-lg-4 my-3">
-        <svg xmlns='http://www.w3.org/2000/svg' class='feather text-violet feather-big' width="4em" height="4em">
-            <use href="{{ `images/feather/feather-sprite.svg#circle` | relURL }}"/>
-        </svg>
-        <h4>Mucho más que salarios <small class="d-none">🫶</small></h4>
-        <p>Sí, todos queremos conocer cómo están los salarios, pero también queremos conocer qué factores los afectan 
-          y descubrir cómo es su comportamiento entre minorías.</p>
-    </div>
-    <div class="col-lg-4 my-3">
-        <svg xmlns='http://www.w3.org/2000/svg' class='feather text-violet feather-big' width="4em" height="4em">
-            <use href="{{ `images/feather/feather-sprite.svg#zap` | relURL }}"/>
-        </svg>
-        <h4>Impacto de la IA <small class="d-none">🤖</small></h4>
-        <p>Identifiquemos cómo está impactando la IA nuestras actividades, salarios y planes de carrera.</p>
-    </div>
-    <div class="col-lg-4  my-3">
-        <svg xmlns='http://www.w3.org/2000/svg' class='feather text-violet feather-big' width="4em" height="4em">
-            <use href="{{ `images/feather/feather-sprite.svg#shield` | relURL }}"/>
-        </svg>
-        <h4>Anonimidad <small class="d-none">🛡️</small></h4>
-        <p>La encuesta está instrumentada para realizarse de forma anónima. Es decir, no tenemos forma de relacionar los datos contigo, por lo que tu identidad permanece protegida.</p>
-    </div>
-    <div class="col-lg-4 my-3">
-        <svg xmlns='http://www.w3.org/2000/svg' class='feather text-violet feather-big' width="4em" height="4em">
-            <use href="{{ `images/feather/feather-sprite.svg#eye` | relURL }}"/>
-        </svg>
-        <h4>Datos abiertos <small class="d-none">👀</small></h4>
-        <p>Todos los datos están abiertos y disponibles inmediatamente. Consulta el <a href="/dashboard">dashboard</a> y/o <a href="https://docs.google.com/spreadsheets/d/1HHaA8ezZ7odVt_cLneeo-QAqcd-1zLWBu42bmVJgZak/edit?usp=sharing">accede a los datos crudos</a> para realizar tu propio análisis.</p>
-    </div>
-    <div class="col-lg-4 my-3">
-        <svg xmlns='http://www.w3.org/2000/svg' class='feather text-violet feather-big' width="4em" height="4em">
-            <use href="{{ `images/feather/feather-sprite.svg#clock` | relURL }}"/>
-        </svg>
-        <h4>Puedes continuar una encuesta comenzada <small class="d-none">⏲️</small></h4>
-        <p>Si comenzaste a contestar la encuesta pero no la terminaste, al abrirla desde el mismo navegador deberías poder continuarla.</p>
-    </div>
-</div>
 
+    <div class="reading">
+      <article class="read-card r-1 rise">
+        <span class="tag">Para el talento</span>
+        <h3>Contexto para decidir</h3>
+        <p>M&aacute;s contexto para entender el mercado, orientar una carrera, evaluar oportunidades y participar mejor preparado en conversaciones sobre compensaci&oacute;n y crecimiento.</p>
+      </article>
+      <article class="read-card r-2 rise">
+        <span class="tag">Para las compa&ntilde;&iacute;as</span>
+        <h3>Evidencia para dise&ntilde;ar</h3>
+        <p>M&aacute;s evidencia para dise&ntilde;ar estrategias de atracci&oacute;n, desarrollo, compensaci&oacute;n, retenci&oacute;n, diversidad e inclusi&oacute;n.</p>
+      </article>
+      <article class="read-card r-3 rise">
+        <span class="tag">Para el ecosistema</span>
+        <h3>Una visi&oacute;n compartida</h3>
+        <p>Una visi&oacute;n compartida de las transformaciones, brechas y oportunidades que pueden definir el futuro del mercado tecnol&oacute;gico.</p>
+      </article>
+    </div>
+
+    <p class="step-note">
+      Queremos que el talento y las compa&ntilde;&iacute;as sigan prosperando y enfrentando
+      los desaf&iacute;os del futuro con mejores datos.
+    </p>
+  </div>
 </section>
 
+<!-- ══ 4 · TRAYECTORIA ══ -->
+<section id="trayectoria">
+  <div class="wrap now">
+    <div>
+      <p class="eyebrow">Una investigaci&oacute;n con historia</p>
+      <h2 style="font-size:clamp(30px,4.4vw,44px);margin:14px 0 0">
+        SG mide el mercado salarial tech desde 2010.
+      </h2>
+      <p style="color:var(--tx-soft);font-size:17.5px;margin:20px 0 0">
+        La Encuesta de Salarios SG ha acompa&ntilde;ado distintas etapas de la industria
+        tecnol&oacute;gica en M&eacute;xico durante m&aacute;s de una d&eacute;cada, y esta edici&oacute;n extiende
+        esa lectura al resto de Latinoam&eacute;rica.
+      </p>
+      <p style="color:var(--tx-soft);font-size:17.5px;margin:14px 0 0">
+        No partimos de cero. Cada edici&oacute;n nos ayuda a observar c&oacute;mo evolucionan
+        los perfiles, las formas de trabajo, las compensaciones y los factores que
+        influyen en una carrera tecnol&oacute;gica.
+      </p>
+      <p style="color:var(--tx-soft);font-size:17.5px;margin:14px 0 0">
+        La edici&oacute;n 2026 actualiza esa lectura para un mercado profundamente
+        transformado por la inteligencia artificial, el trabajo distribuido y
+        nuevas expectativas entre talento y compa&ntilde;&iacute;as.
+      </p>
+    </div>
+    <div class="now-viz">
+      <canvas id="live-viz" aria-label="Recurso gr&aacute;fico: mol&eacute;culas que flotan, se conectan y se ordenan en figuras geom&eacute;tricas" role="img"></canvas>
+    </div>
+  </div>
 
+  <div class="wrap" style="margin-top:52px">
+    <div class="figures">
+      <div class="figure">
+        <div class="v">Desde 2010</div>
+        <div class="k">Distintas ediciones observando el mercado tech</div>
+      </div>
+      <div class="figure">
+        <div class="v">9&ndash;11<span style="font-size:.5em"> min</span></div>
+        <div class="k">Tiempo estimado para responder</div>
+      </div>
+      <div class="figure">
+        <div class="v">Abiertos</div>
+        <div class="k">Resultados disponibles para la comunidad</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 5 · DATOS ABIERTOS ══ -->
+<section class="alt" id="datos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Informaci&oacute;n para la comunidad</p>
+      <h2>Lo que aprendemos vuelve al mercado.</h2>
+    </div>
+    <div class="raw">
+      <div>
+        <p style="font-size:17px;color:var(--tx-soft);margin:0">
+          Los resultados agregados y los datos anonimizados estar&aacute;n disponibles
+          para que profesionales, compa&ntilde;&iacute;as, investigadores y comunidades puedan
+          consultarlos y realizar sus propios an&aacute;lisis.
+        </p>
+        <p style="font-size:17px;color:var(--tx-soft);margin:14px 0 0">
+          No existe un reporte premium ni un paywall. La informaci&oacute;n generada por
+          la comunidad regresa a la comunidad.
+        </p>
+      </div>
+      <a class="btn btn-ghost" href="{{ "dashboard/" | relURL }}">
+        Consultar el dashboard
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 6 · PRIVACIDAD ══ -->
+<section id="privacidad">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">C&oacute;mo cuidamos tu informaci&oacute;n</p>
+      <h2>No buscamos saber qui&eacute;n eres. Buscamos entender el mercado.</h2>
+    </div>
+    <div class="promises">
+      <article class="promise rise">
+        <span class="ic" style="background:var(--lavender)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#171716" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.9 7.8-7 9-4.1-1.2-7-4.8-7-9V6z"/></svg>
+        </span>
+        <div>
+          <h3>An&oacute;nima desde el dise&ntilde;o</h3>
+          <p>La encuesta no solicita nombre ni correo, y las respuestas no se asocian con una identidad personal.</p>
+        </div>
+      </article>
+      <article class="promise rise">
+        <span class="ic" style="background:var(--violet)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+        </span>
+        <div>
+          <h3>Tu respuesta es lo importante</h3>
+          <p>La informaci&oacute;n se utiliza para analizar tendencias del mercado, no para construir perfiles individuales.</p>
+        </div>
+      </article>
+      <article class="promise rise">
+        <span class="ic" style="background:var(--lime)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#171716" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <div>
+          <h3>Puedes continuar despu&eacute;s</h3>
+          <p>Si no puedes terminarla en una sola sesi&oacute;n, podr&aacute;s retomarla desde el mismo navegador.</p>
+        </div>
+      </article>
+      <article class="promise rise">
+        <span class="ic" style="background:var(--coral)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
+        </span>
+        <div>
+          <h3>Metodolog&iacute;a transparente</h3>
+          <p>Explicamos c&oacute;mo se recopilan, procesan y presentan los datos para que los resultados puedan interpretarse con responsabilidad.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ALCANCE ══ -->
+<section class="alt" id="alcance">
+  <div class="wrap now">
+    <div>
+      <p class="eyebrow">De d&oacute;nde queremos escuchar</p>
+      <h2 style="font-size:clamp(30px,4.4vw,44px);margin:14px 0 0">
+        La regi&oacute;n completa, no s&oacute;lo su centro m&aacute;s ruidoso.
+      </h2>
+      <p style="color:var(--tx-soft);font-size:17.5px;margin:20px 0 0">
+        Hoy la mayor concentraci&oacute;n de respuestas viene de M&eacute;xico. Eso hace que
+        el retrato del mercado sea n&iacute;tido ah&iacute; y quede borroso en el resto de
+        Latinoam&eacute;rica, justo donde m&aacute;s falta hace la comparaci&oacute;n.
+      </p>
+      <p style="color:var(--tx-soft);font-size:17.5px;margin:14px 0 0">
+        Por eso esta edici&oacute;n busca activamente a quienes trabajan en tecnolog&iacute;a
+        desde cualquier pa&iacute;s de la regi&oacute;n, y tambi&eacute;n a los profesionales latinos
+        que ejercen en Estados Unidos y Canad&aacute;: sus condiciones son parte de la
+        misma historia y hoy casi no aparecen en los datos.
+      </p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--tx-faint);margin:22px 0 0;line-height:1.7">
+        Si eres de los pocos que responden desde tu pa&iacute;s, tu respuesta pesa
+        m&aacute;s que ninguna otra.
+      </p>
+    </div>
+    <div class="now-viz" style="aspect-ratio:1/.8">
+      <svg viewBox="0 0 400 320" role="img" aria-label="Un c&uacute;mulo denso de mol&eacute;culas junto a varios grupos dispersos y m&aacute;s peque&ntilde;os" style="width:100%;height:100%;display:block">
+        <g filter="url(#goo-fine)">
+          <!-- núcleo actual -->
+          <circle cx="150" cy="168" r="26" fill="#6B3DFA"/>
+          <circle cx="186" cy="146" r="19" fill="#6B3DFA"/>
+          <circle cx="122" cy="200" r="17" fill="#6B3DFA"/>
+          <circle cx="182" cy="196" r="15" fill="#6B3DFA"/>
+          <circle cx="116" cy="140" r="13" fill="#6B3DFA"/>
+          <!-- el resto de la región, todavía escaso -->
+          <circle cx="286" cy="96"  r="11" fill="#BBA3FC"/>
+          <circle cx="312" cy="118" r="8"  fill="#BBA3FC"/>
+          <circle cx="300" cy="224" r="10" fill="#C4E833"/>
+          <circle cx="326" cy="246" r="7"  fill="#C4E833"/>
+          <circle cx="248" cy="272" r="8"  fill="#BBA3FC"/>
+          <circle cx="66"  cy="86"  r="9"  fill="#FD655C"/>
+          <circle cx="92"  cy="66"  r="6"  fill="#FD655C"/>
+          <circle cx="58"  cy="256" r="7"  fill="#BBA3FC"/>
+          <circle cx="352" cy="164" r="6"  fill="#C4E833"/>
+          <circle cx="212" cy="60"  r="5"  fill="#BBA3FC"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ══ -->
+<section id="participar">
+  <div class="wrap">
+    <div class="closing">
+      <img class="closing-mol-img" src="{{ ((resources.Get "images/brand/isotipo.png").Resize "480x webp q78").RelPermalink }}" width="340" height="337" loading="lazy" alt="" aria-hidden="true">
+      <p class="eyebrow" style="color:#7D776C">Toma entre 9 y 11 minutos</p>
+      <h2>Ay&uacute;danos a contar la historia del talento tech latino.</h2>
+      <p>
+        Si trabajas en tecnolog&iacute;a &mdash;en cualquier pa&iacute;s de Latinoam&eacute;rica, o como
+        profesional latino en Estados Unidos o Canad&aacute;&mdash; tu experiencia puede
+        ayudarnos a entender c&oacute;mo est&aacute; cambiando el mercado y qu&eacute; necesitamos
+        hacer para que m&aacute;s personas y compa&ntilde;&iacute;as puedan prosperar en &eacute;l.
+      </p>
+      <a class="btn btn-primary" href="{{ site.Params.surveyURL }}" target="_blank" rel="noopener noreferrer">
+        Participar en la encuesta
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#7D776C;margin-top:20px">
+        An&oacute;nima &middot; Resultados abiertos &middot; Puedes retomarla despu&eacute;s
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="#top" aria-label="Tech Pulse 2026, Encuesta de Salarios de SG Software Guru">
+      <img class="lg-light" src="{{ ((resources.Get "images/brand/logo-negro.png").Resize "440x webp q80").RelPermalink }}" alt="SG Tech Pulse 2026 · Encuesta de Salarios" width="440" height="102">
+      <img class="lg-dark"  src="{{ ((resources.Get "images/brand/logo-blanco.png").Resize "440x webp q80").RelPermalink }}" width="440" height="102" alt="">
+    </a>
+      <p class="foot-note" style="margin:10px 0 0;max-width:44ch">
+        Una iniciativa de SG Software Guru, agencia de Developer Relations y
+        bureau de inteligencia del mercado tech.
+      </p>
+    </div>
+    <div class="foot-links">
+      <a href="{{ "dashboard/" | relURL }}">Dashboard</a>
+      <a href="{{ "about/" | relURL }}">Acerca de</a>
+      <a href="{{ "privacy-policy/" | relURL }}">Privacidad</a>
+      <a href="{{ "code-of-conduct/" | relURL }}">C&oacute;digo de conducta</a>
+    </div>
+  </div>
+</footer>
+{{- $js := resources.Get "js/techpulse.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 {{ partial "script-tracker.html" . }}
-
-
-{{ end }}
+</body>
+</html>
