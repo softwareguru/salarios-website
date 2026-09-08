@@ -129,39 +129,12 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 5H5a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-5"/></svg>
         </a>
       </div>
-
-      <!-- En producción, el iframe ocupa este marco. Se conserva la relación
-           10:7 del reporte (1000x700) para que no aparezcan barras internas.
-           Sustituir el marcador por:
-
-           <iframe class="board-embed" title="Resultados de SG Tech Pulse 2026"
-             src="https://lookerstudio.google.com/embed/reporting/4bbcc4b4-9f31-4ac9-b308-95ccecfc9859/page/1TI3F"
-             loading="lazy" allowfullscreen
-             sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-      -->
       <div class="board-frame">
-        <div class="board-slot">
-          <svg class="skeleton" viewBox="0 0 1000 700" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
-            <g filter="url(#goo-fine)">
-              <circle cx="120" cy="90"  r="16" fill="#BBA3FC"/>
-              <circle cx="152" cy="104" r="10" fill="#BBA3FC"/>
-              <circle cx="880" cy="120" r="20" fill="#6B3DFA"/>
-              <circle cx="846" cy="140" r="12" fill="#6B3DFA"/>
-              <circle cx="150" cy="600" r="18" fill="#C4E833"/>
-              <circle cx="188" cy="618" r="11" fill="#C4E833"/>
-              <circle cx="870" cy="580" r="15" fill="#FD655C"/>
-              <circle cx="840" cy="604" r="9"  fill="#FD655C"/>
-              <circle cx="500" cy="60"  r="9"  fill="#BBA3FC"/>
-              <circle cx="520" cy="650" r="11" fill="#BBA3FC"/>
-            </g>
-          </svg>
-          <p class="msg">
-            <b>Espacio reservado para el tablero en vivo.</b><br>
-            En el sitio real, el reporte de Looker Studio ocupa este marco
-            completo. El navegador de previsualizaci&oacute;n bloquea los iframes
-            externos, por eso aqu&iacute; se ve el marcador.
-          </p>
-        </div>
+        <iframe class="board-embed"
+                title="Resultados de SG Tech Pulse 2026"
+                src="https://lookerstudio.google.com/embed/reporting/4bbcc4b4-9f31-4ac9-b308-95ccecfc9859/page/1TI3F"
+                loading="lazy" allowfullscreen
+                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
       </div>
     </div>
 
