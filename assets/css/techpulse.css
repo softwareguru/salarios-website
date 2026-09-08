@@ -566,3 +566,164 @@
   }
   @media (max-width: 900px) { .watermark { display: none; } }
 
+
+
+/* ══════ Específico del tablero ══════ */
+/* ══ Específico del tablero ══ */
+  .page-head { padding: 60px 0 40px; }
+  .page-head h1 { font-size: clamp(38px, 6vw, 62px); margin: 16px 0 0; }
+  .page-head p.lead {
+    font-size: 19px; color: var(--tx-soft); max-width: 58ch; margin: 20px 0 0;
+    text-wrap: pretty;
+  }
+
+  /* tira de cifras */
+  .stats {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 44px;
+  }
+  @media (max-width: 880px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 440px) { .stats { grid-template-columns: 1fr; } }
+  .stat {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 16px; padding: 20px 22px 22px;
+    border-top: 3px solid var(--tone);
+  }
+  .stat .v {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 32px; font-weight: 500; line-height: 1;
+    letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+  }
+  .stat .k { font-size: 14px; color: var(--tx-soft); margin-top: 10px; line-height: 1.45; }
+  .s-violet { --tone: var(--violet); }
+  .s-lime   { --tone: #A8C91F; }
+  .s-coral  { --tone: var(--coral); }
+  .s-lav    { --tone: var(--lavender); }
+
+  /* avance de la muestra */
+  .progress-card {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 20px; padding: 28px 30px; margin-top: 18px;
+  }
+  .progress-top {
+    display: flex; flex-wrap: wrap; gap: 12px 24px;
+    align-items: baseline; justify-content: space-between;
+  }
+  .progress-top h2 { font-size: 22px; font-weight: 700; }
+  .progress-top .pct {
+    font-family: "IBM Plex Mono", monospace; font-size: 15px; color: var(--tx-soft);
+  }
+  .bar {
+    position: relative; height: 14px; border-radius: 999px;
+    background: var(--surface-2); margin: 18px 0 14px; overflow: hidden;
+  }
+  .bar-fill {
+    position: absolute; inset: 0 auto 0 0; border-radius: 999px;
+    background: linear-gradient(90deg, var(--violet), var(--lavender) 62%, var(--lime));
+  }
+  .bar-note { font-size: 14.5px; color: var(--tx-soft); line-height: 1.55; margin: 0; }
+  .bar-note b { color: var(--tx); font-weight: 600; }
+
+  /* marco del tablero */
+  .board-wrap { margin-top: 22px; }
+  .board-bar {
+    display: flex; flex-wrap: wrap; gap: 10px 18px;
+    align-items: center; justify-content: space-between;
+    padding: 0 4px 12px;
+  }
+  .board-bar .who {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    color: var(--tx-faint); letter-spacing: .06em; text-transform: uppercase;
+  }
+  .board-frame {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 22px; padding: 12px; overflow: hidden;
+  }
+  .board-slot {
+    aspect-ratio: 10 / 7; width: 100%;
+    border-radius: 14px; background: var(--surface-2);
+    display: grid; place-items: center; text-align: center;
+    padding: 24px; position: relative; overflow: hidden;
+  }
+  @media (max-width: 700px) { .board-slot { aspect-ratio: 1 / 1.6; } }
+  .board-slot .msg {
+    position: relative; z-index: 2;
+    font-family: "IBM Plex Mono", monospace; font-size: 13px;
+    color: var(--tx-soft); line-height: 1.7; max-width: 40ch;
+  }
+  .board-slot .msg b { color: var(--tx); font-weight: 500; }
+  .skeleton { position: absolute; inset: 0; opacity: .5; }
+
+  /* leer los datos */
+  .reading { display: grid; gap: 14px; grid-template-columns: repeat(3, 1fr); margin-top: 18px; }
+  @media (max-width: 820px) { .reading { grid-template-columns: 1fr; } }
+  .read-card {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 16px; padding: 22px 24px;
+  }
+  .read-card h3 { font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+  .read-card p { font-size: 14.5px; color: var(--tx-soft); margin: 8px 0 0; line-height: 1.55; }
+  .read-card .tag {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--tone2); display: block; margin-bottom: 9px;
+  }
+  .r-1 { --tone2: var(--violet); }
+  .r-2 { --tone2: #9A5B06; }
+  .r-3 { --tone2: #2C6E49; }
+
+  /* datos crudos */
+  .raw {
+    display: flex; flex-wrap: wrap; gap: 22px 34px;
+    align-items: center; justify-content: space-between;
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 20px; padding: 28px 32px; margin-top: 18px;
+  }
+  .raw h3 { font-size: 21px; font-weight: 700; }
+  .raw p { font-size: 15px; color: var(--tx-soft); margin: 8px 0 0; max-width: 52ch; }
+
+  
+/* ══ Identidad: assets de marca ══ */
+  .brand { gap: 0; }
+  /* 44px: por debajo, el descriptor "2026 · Encuesta de Salarios" deja de leerse */
+  .brand img { display: block; height: 44px; width: auto; }
+  .brand .lg-dark  { display: none; }
+  :root[data-theme="dark"] .brand .lg-light { display: none; }
+  :root[data-theme="dark"] .brand .lg-dark  { display: block; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .brand .lg-light { display: none; }
+    :root:not([data-theme="light"]) .brand .lg-dark  { display: block; }
+  }
+  @media (max-width: 520px) { .brand img { height: 34px; } }
+
+  /* el pie usa el mismo lockup, algo mayor */
+  footer .brand img { height: 40px; }
+
+  /* isotipo del cierre: sustituye al dibujo hecho a mano */
+  .closing-mol-img {
+    position: absolute; right: -46px; bottom: -54px;
+    width: 320px; height: auto; opacity: .92; pointer-events: none;
+  }
+  @media (max-width: 760px) { .closing-mol-img { display: none; } }
+
+  /* marca de agua en contorno, muy tenue */
+  .watermark {
+    position: absolute; pointer-events: none;
+    opacity: .06; width: 380px; height: auto;
+  }
+  :root[data-theme="dark"] .watermark { opacity: .1; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .watermark { opacity: .1; }
+  }
+  @media (max-width: 900px) { .watermark { display: none; } }
+
+  /* el tablero embebido llena el marco, sin barras internas */
+  .board-embed {
+    width: 100%; aspect-ratio: 10 / 7;
+    border: 0; border-radius: 14px; display: block;
+    background: var(--surface-2);
+  }
+  @media (max-width: 700px) { .board-embed { aspect-ratio: 1 / 1.6; } }
+
+
