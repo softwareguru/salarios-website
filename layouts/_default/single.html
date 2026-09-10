@@ -1,0 +1,110 @@
+{{- /* SG Tech Pulse 2026 · páginas de contenido (Acerca de, Privacidad, Código
+     de conducta). Comparten el chrome del home y el dashboard: mismo nav,
+     footer, tipografía y hoja de estilo techpulse.css. */ -}}
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Title }} · {{ site.Title }}</title>
+<meta name="description" content="{{ .Params.description }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ .Params.description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:image" content="{{ ((resources.Get "images/brand/og-techpulse.png").Resize "1200x png").Permalink }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ .Params.description }}">
+<meta name="twitter:image" content="{{ ((resources.Get "images/brand/og-techpulse.png").Resize "1200x png").Permalink }}">
+<link rel="icon" href="{{ ((resources.Get "images/brand/isotipo-plasta.png").Resize "180x png").RelPermalink }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+{{- $css := resources.Get "css/techpulse.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- partial "head/google-tag-manager.html" . }}
+{{- partial "head/google-tag.html" . }}
+</head>
+<body>
+{{ partial "google-tag-manager-noscript.html" . }}
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="{{ "" | relURL }}" aria-label="Tech Pulse 2026, Encuesta de Salarios de SG Software Guru">
+      <img class="lg-light" src="{{ ((resources.Get "images/brand/logo-negro.png").Resize "440x webp q80").RelPermalink }}" alt="SG Tech Pulse 2026 · Encuesta de Salarios" width="440" height="102">
+      <img class="lg-dark"  src="{{ ((resources.Get "images/brand/logo-blanco.png").Resize "440x webp q80").RelPermalink }}" width="440" height="102" alt="">
+    </a>
+    <div class="nav-links" id="nav-menu">
+      <a class="hide-sm" href="{{ "" | relURL }}">Inicio</a>
+      <a class="hide-sm" href="{{ "dashboard/" | relURL }}">Dashboard</a>
+      <a class="hide-sm" href="{{ "about/" | relURL }}"{{ if eq .RelPermalink (relURL "about/") }} aria-current="page" style="color:var(--tx)"{{ end }}>Acerca de</a>
+      <span class="nav-controls">
+        <button class="theme-btn" id="theme-toggle" type="button" aria-label="Cambiar entre tema claro y oscuro">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+          </svg>
+          <span class="lbl-light">Claro</span><span class="lbl-dark">Oscuro</span>
+        </button>
+      </span>
+      <a class="btn btn-primary btn-sm" href="{{ site.Params.surveyURL }}" target="_blank" rel="noopener noreferrer">Participar</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" type="button"
+            aria-expanded="false" aria-controls="nav-menu"
+            aria-label="Abrir el menú de navegación">
+      <svg class="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="page-head" id="top">
+  <span id="main" tabindex="-1"></span>
+  <div class="narrow">
+    <p class="eyebrow">{{ with .Params.eyebrow }}{{ . }}{{ else }}{{ site.Title }}{{ end }}</p>
+    <h1>{{ .Title }}</h1>
+    {{- with .Params.description }}
+    <p class="lead">{{ . }}</p>
+    {{- end }}
+  </div>
+</header>
+
+<section class="doc">
+  <div class="narrow">
+    <article class="prose">
+      {{ .Content }}
+    </article>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="{{ "" | relURL }}" aria-label="Tech Pulse 2026, Encuesta de Salarios de SG Software Guru">
+      <img class="lg-light" src="{{ ((resources.Get "images/brand/logo-negro.png").Resize "440x webp q80").RelPermalink }}" alt="SG Tech Pulse 2026 · Encuesta de Salarios" width="440" height="102">
+      <img class="lg-dark"  src="{{ ((resources.Get "images/brand/logo-blanco.png").Resize "440x webp q80").RelPermalink }}" width="440" height="102" alt="">
+    </a>
+      <p class="foot-note" style="margin:10px 0 0;max-width:44ch">Una iniciativa de SG Software Guru, agencia de Developer Relations y bureau de inteligencia del mercado tech.</p>
+    </div>
+    <div class="foot-links">
+      <a href="{{ "" | relURL }}">Inicio</a>
+      <a href="{{ "dashboard/" | relURL }}">Dashboard</a>
+      <a href="{{ "about/" | relURL }}">Acerca de</a>
+      <a href="{{ "privacy-policy/" | relURL }}">Privacidad</a>
+      <a href="{{ "code-of-conduct/" | relURL }}">C&oacute;digo de conducta</a>
+      <a href="#cookie-preferences">Preferencias de cookies</a>
+    </div>
+  </div>
+</footer>
+{{- $js := resources.Get "js/techpulse.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{ partial "script-tracker.html" . }}
+{{ partial "cookie-consent.html" . }}
+</body>
+</html>

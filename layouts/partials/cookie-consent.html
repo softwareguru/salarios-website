@@ -1,0 +1,55 @@
+{{- /* SG Tech Pulse · banner de consentimiento de cookies.
+     Muestra el aviso hasta que la persona elige. "Aceptar" activa la analítica
+     (window.sgLoadAnalytics, definido en head/google-tag-manager.html).
+     "Rechazar" no carga nada. La decisión se guarda en localStorage y puede
+     cambiarse desde cualquier enlace con href="#cookie-preferences". */ -}}
+<div id="cookie-consent" class="cookie-consent" hidden role="dialog"
+     aria-label="Aviso de cookies" aria-describedby="cookie-txt">
+  <div class="cookie-in">
+    <p class="cookie-txt" id="cookie-txt">
+      Usamos cookies propias y de Google (Analytics) para medir el uso del sitio
+      y mejorar tu experiencia. Puedes aceptarlas o rechazarlas; la analítica no
+      se activa hasta que aceptas. M&aacute;s detalles en el
+      <a href="{{ "privacy-policy/" | relURL }}">aviso de privacidad</a>.
+    </p>
+    <div class="cookie-btns">
+      <button type="button" class="btn btn-ghost btn-sm" data-cookie="reject">Rechazar</button>
+      <button type="button" class="btn btn-primary btn-sm" data-cookie="accept">Aceptar</button>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var KEY = 'sg-cookie-consent';
+  var el = document.getElementById('cookie-consent');
+  if (!el) return;
+
+  function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function save(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+
+  function decide(v) {
+    save(v);
+    el.hidden = true;
+    if (v === 'granted' && typeof window.sgLoadAnalytics === 'function') {
+      window.sgLoadAnalytics();
+    }
+  }
+
+  el.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-cookie]');
+    if (!b) return;
+    decide(b.getAttribute('data-cookie') === 'accept' ? 'granted' : 'denied');
+  });
+
+  // Reabrir el banner desde el enlace "Preferencias de cookies" del pie.
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('a[href="#cookie-preferences"]');
+    if (!t) return;
+    e.preventDefault();
+    el.hidden = false;
+  });
+
+  // Mostrar solo si la persona aún no ha decidido.
+  if (!stored()) el.hidden = false;
+})();
+</script>

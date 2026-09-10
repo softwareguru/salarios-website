@@ -90,7 +90,7 @@
         <div class="k">Distintas ediciones observando el mercado tech</div>
       </div>
       <div class="stat s-lime">
-        <div class="v">9&ndash;11<span style="font-size:.6em"> min</span></div>
+        <div class="v">9 a 11<span style="font-size:.6em"> min</span></div>
         <div class="k">Tiempo estimado para responder</div>
       </div>
       <div class="stat s-coral">
@@ -115,7 +115,7 @@
       <p class="bar-note" style="margin-top:14px">
         La encuesta sigue abierta, as&iacute; que las cifras de este tablero son
         provisionales y se actualizan conforme llegan respuestas. Los cortes con
-        m&aacute;s participaci&oacute;n &mdash;los roles y ciudades m&aacute;s comunes&mdash; son los que
+        m&aacute;s participaci&oacute;n, los roles y ciudades m&aacute;s comunes, son los que
         primero alcanzan una lectura estable; los cortes finos necesitan m&aacute;s
         volumen. <b>Cada respuesta acerca ese umbral.</b>
       </p>
@@ -198,8 +198,8 @@
       <p class="eyebrow" style="color:#7D776C">Toma entre 9 y 11 minutos</p>
       <h2>Ay&uacute;danos a contar la historia del talento tech latino.</h2>
       <p>
-        Si trabajas en tecnolog&iacute;a &mdash;en cualquier pa&iacute;s de Latinoam&eacute;rica, o como
-        profesional latino en Estados Unidos o Canad&aacute;&mdash; tu experiencia puede
+        Si trabajas en tecnolog&iacute;a, en cualquier pa&iacute;s de Latinoam&eacute;rica, o como
+        profesional latino en Estados Unidos o Canad&aacute;, tu experiencia puede
         ayudarnos a entender c&oacute;mo est&aacute; cambiando el mercado.
       </p>
       <a class="btn btn-primary" href="{{ site.Params.surveyURL }}" target="_blank" rel="noopener noreferrer">
@@ -224,11 +224,13 @@
       <a href="{{ "about/" | relURL }}">Acerca de</a>
       <a href="{{ "privacy-policy/" | relURL }}">Privacidad</a>
       <a href="{{ "code-of-conduct/" | relURL }}">C&oacute;digo de conducta</a>
+      <a href="#cookie-preferences">Preferencias de cookies</a>
     </div>
   </div>
 </footer>
 {{- $js := resources.Get "js/techpulse.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 {{ partial "script-tracker.html" . }}
+{{ partial "cookie-consent.html" . }}
 </body>
 </html>
