@@ -1,0 +1,60 @@
+{{- /* SG Tech Pulse · carga de analítica CONDICIONADA al consentimiento.
+     Sobre-escribe el partial homónimo del tema. Google Analytics (GA4) y
+     Google Tag Manager NO se cargan hasta que la persona acepta las cookies
+     en el banner (ver partial cookie-consent.html). Consent Mode v2 arranca
+     en "denegado" por defecto. */ -}}
+<script>
+(function () {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+
+  // Consent Mode v2: todo denegado hasta que la persona acepte.
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+
+  var GA_ID  = 'G-T2H09T399Q';
+  var GTM_ID = 'GTM-MQGPMDH';
+  var loaded = false;
+
+  // Se llama al aceptar en el banner (o al cargar si ya había consentimiento).
+  window.sgLoadAnalytics = function () {
+    if (loaded) return;
+    loaded = true;
+
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted'
+    });
+
+    // GA4 (gtag.js)
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(g);
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+
+    // Google Tag Manager
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer',GTM_ID);
+  };
+
+  // Si ya existe consentimiento guardado, cargar de inmediato.
+  try {
+    if (localStorage.getItem('sg-cookie-consent') === 'granted') {
+      window.sgLoadAnalytics();
+    }
+  } catch (e) {}
+})();
+</script>
