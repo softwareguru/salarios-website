@@ -1,4 +1,4 @@
-baseURL = 'https://salarios.sg.com.mx/'
+baseURL = 'https://techpulse.sg.com.mx/'
 locale = 'es-mx'
 languageCode = 'es-mx'
 title = 'SG Tech Pulse'
