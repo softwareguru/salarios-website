@@ -1,0 +1,110 @@
+/* Hallazgos SG Tech Pulse 2026, en /dashboard/.
+   Portado del scrollytelling de campaign/findings-site. Dos cosas que
+   cambian frente al original:
+
+   1 · Todo va acotado a #hallazgos. El original era un documento suelto y
+       trae 13 clases que ya existen en techpulse.css (.wrap, .hero, .mono,
+       .brand, .lead, .bar, .in, .doc, .coral, .eyebrow, .theme-btn y las dos
+       de las etiquetas del toggle). Sin acotar, .wrap de aqui le cambiaba el
+       ancho a la barra de navegacion.
+   2 · Los colores salen de las variables del sitio. La paleta es la misma
+       —el sitio de hallazgos se diseno con estos hex—, solo cambiaban los
+       nombres, asi que aqui se mapean en vez de redefinirse: el tema claro
+       y oscuro del sitio sigue mandando, incluido el toggle de la barra. */
+
+#hallazgos{
+  --ink: var(--tx);
+  --ink-2: var(--tx-soft);
+  --muted: var(--tx-faint);
+  --border: var(--rule);
+  --grid: var(--rule);
+  --baseline: var(--rule);
+  --bar: var(--accent);
+  --violet: var(--accent);
+  --women: var(--coral);
+  --men: #B9B2A6;
+  color: var(--tx);
+  font-size: 18px;
+  line-height: 1.65;
+}
+:root[data-theme="dark"] #hallazgos{ --men:#6E675C }
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) #hallazgos{ --men:#6E675C } }
+
+#hallazgos *{box-sizing:border-box}
+#hallazgos h1,#hallazgos h2,#hallazgos h3{font-family:"Bricolage Grotesque",system-ui,sans-serif; letter-spacing:-.03em; line-height:1.03; margin:0}
+#hallazgos .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+#hallazgos svg text{font-family:"Instrument Sans",system-ui,sans-serif}
+#hallazgos a{color:var(--accent)}
+
+/* El avance de lectura. La barra de navegacion del sitio va encima. */
+#hallazgos .progress{position:fixed; top:0; left:0; height:3px; width:0%; background:var(--accent); z-index:60; transition:width .1s linear}
+
+/* layout */
+#hallazgos .wrap{max-width:760px; margin:0 auto; padding:0 20px}
+#hallazgos section.scene{min-height:92vh; display:flex; flex-direction:column; justify-content:center; padding:8vh 0}
+#hallazgos .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; font-weight:500}
+#hallazgos .scene h2{font-size:clamp(30px,5.2vw,50px); margin-bottom:10px}
+#hallazgos .lede{font-size:clamp(19px,2.3vw,23px); color:var(--ink-2); margin:14px 0 0; max-width:40ch}
+#hallazgos .note{font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--muted); margin-top:18px; line-height:1.5}
+#hallazgos .body p{margin:14px 0; color:var(--ink-2)}
+#hallazgos .body p.lead{color:var(--ink); font-size:20px}
+#hallazgos ul.doc{list-style:none; padding:0; margin:16px 0}
+#hallazgos ul.doc li{position:relative; padding-left:22px; margin:9px 0; color:var(--ink-2)}
+#hallazgos ul.doc li::before{content:""; position:absolute; left:2px; top:11px; width:7px; height:7px; border-radius:50%; background:var(--accent)}
+#hallazgos .big-stat{font-family:"Bricolage Grotesque",sans-serif; font-weight:800; font-size:clamp(56px,13vw,120px); line-height:.92; letter-spacing:-.04em; color:var(--accent)}
+#hallazgos .big-stat.coral{color:var(--women)}
+#hallazgos .big-sub{font-size:19px; color:var(--ink-2); margin-top:6px; max-width:36ch}
+
+/* tarjetas de figura */
+#hallazgos .fig{margin:26px 0 6px; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:22px 20px 16px}
+#hallazgos .fig .cap{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted); margin-top:10px}
+#hallazgos .fig svg{display:block; width:100%; height:auto; overflow:visible}
+
+/* divisores de acto */
+#hallazgos .act{min-height:70vh; display:flex; flex-direction:column; justify-content:center; text-align:center; padding:12vh 20px; position:relative}
+#hallazgos .act .num{font-family:"IBM Plex Mono",monospace; font-size:13px; letter-spacing:.2em; color:var(--muted); margin-bottom:18px}
+#hallazgos .act h2{font-size:clamp(38px,8vw,84px); max-width:16ch; margin:0 auto}
+#hallazgos .act .kicker{font-size:clamp(18px,2.6vw,24px); color:var(--ink-2); margin:22px auto 0; max-width:34ch}
+#hallazgos .act .bar{width:64px; height:5px; border-radius:3px; margin:28px auto 0}
+
+/* portada */
+#hallazgos .hero{min-height:88vh; display:flex; flex-direction:column; justify-content:center; padding:10vh 20px; position:relative}
+#hallazgos .hero .kick{font-family:"IBM Plex Mono",monospace; font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:20px}
+#hallazgos .hero h1{font-size:clamp(44px,9.5vw,104px); max-width:14ch}
+#hallazgos .hero .sub{font-size:clamp(19px,2.6vw,26px); color:var(--ink-2); margin-top:24px; max-width:30ch}
+#hallazgos .hero .scroll-hint{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted); margin-top:48px; letter-spacing:.1em}
+#hallazgos .hero .scroll-hint::after{content:" \2193"}
+
+/* la animacion de entrada */
+#hallazgos .rv{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease}
+#hallazgos .rv.in{opacity:1; transform:none}
+#hallazgos .rv.d1{transition-delay:.08s}
+#hallazgos .rv.d2{transition-delay:.16s}
+#hallazgos .rv.d3{transition-delay:.24s}
+
+/* el crecimiento de las barras del svg */
+#hallazgos .gbar{transform:scaleX(0); transform-origin:left center; transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+#hallazgos .in .gbar{transform:scaleX(1)}
+#hallazgos .gcol{transform:scaleY(0); transform-origin:bottom center; transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+#hallazgos .in .gcol{transform:scaleY(1)}
+#hallazgos .gline{stroke-dasharray:1; stroke-dashoffset:1; transition:stroke-dashoffset 1.1s ease .2s}
+#hallazgos .in .gline{stroke-dashoffset:0}
+#hallazgos .gdot,#hallazgos .glabel{opacity:0; transition:opacity .5s ease .6s}
+#hallazgos .in .gdot,#hallazgos .in .glabel{opacity:1}
+#hallazgos .cell{opacity:0; transform:scale(.4); transform-origin:center; transition:opacity .4s ease, transform .4s ease}
+#hallazgos .in .cell{opacity:1; transform:none}
+
+/* el cierre con la nota de la fuente y los logos de quienes difundieron */
+#hallazgos .cierre{background:var(--surface); border-top:1px solid var(--border); padding:48px 20px; text-align:center}
+#hallazgos .cierre .mono{font-size:12px; color:var(--muted); letter-spacing:.1em}
+#hallazgos .cierre .thanks{margin-top:34px; padding-top:28px; border-top:1px solid var(--border)}
+#hallazgos .cierre .thanks-note{font-size:15px; color:var(--ink-2); margin-bottom:18px; max-width:46ch; margin-left:auto; margin-right:auto}
+#hallazgos .cierre .thanks-logos{display:flex; flex-wrap:wrap; gap:14px; justify-content:center; align-items:center}
+#hallazgos .cierre .chip{background:#FFFFFF; border:1px solid var(--border); border-radius:12px; padding:12px 18px; display:inline-flex; align-items:center}
+#hallazgos .cierre .chip img{height:34px; width:auto; display:block}
+#hallazgos .methwith{background:var(--surface-2)}
+
+@media (max-width:640px){
+  #hallazgos{font-size:17px}
+  #hallazgos .fig{padding:16px 12px 12px}
+}

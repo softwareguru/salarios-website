@@ -1,0 +1,677 @@
+{
+  "meta": {
+    "dump": "Responses - Encuesta de Salarios SG 2026 - 12 October 2026.csv",
+    "date_es": "12 de octubre de 2026",
+    "total_n": 689,
+    "mx_n": 620,
+    "sal_n": 558,
+    "women": 230,
+    "men": 382,
+    "women_sal": 212,
+    "men_sal": 341,
+    "fx": 18.5
+  },
+  "overall": {
+    "median": 63750,
+    "n": 558,
+    "median_ci": [
+      60000,
+      68500
+    ]
+  },
+  "levers": {
+    "english": [
+      {
+        "label": "Nunca",
+        "median": 35800,
+        "n": 42
+      },
+      {
+        "label": "Ocasional",
+        "median": 50000,
+        "n": 155
+      },
+      {
+        "label": "Con regularidad",
+        "median": 72000,
+        "n": 86
+      },
+      {
+        "label": "La mayoría",
+        "median": 83600,
+        "n": 65
+      },
+      {
+        "label": "Todo el tiempo",
+        "median": 80000,
+        "n": 150
+      }
+    ],
+    "foreign": {
+      "foreign_median": 85000,
+      "foreign_n": 80,
+      "local_median": 61600,
+      "local_n": 478,
+      "premium_pct": 38,
+      "share_pct": 15,
+      "premium_ci": [
+        1,
+        67
+      ]
+    },
+    "role": [
+      {
+        "label": "Security-InfoSec",
+        "median": 130000,
+        "n": 9
+      },
+      {
+        "label": "Arquitectura",
+        "median": 107500,
+        "n": 24
+      },
+      {
+        "label": "Liderazgo ejecutivo",
+        "median": 92000,
+        "n": 43
+      },
+      {
+        "label": "Engineering management",
+        "median": 85000,
+        "n": 12
+      },
+      {
+        "label": "Desarrollo de software (Backend/Frontend/Fullstack/Móvil)",
+        "median": 74000,
+        "n": 175
+      },
+      {
+        "label": "Ciencia de datos/IA",
+        "median": 72610,
+        "n": 32
+      },
+      {
+        "label": "Product management",
+        "median": 70000,
+        "n": 23
+      },
+      {
+        "label": "DevOps-SRE-Infra",
+        "median": 70000,
+        "n": 21
+      },
+      {
+        "label": "Ingeniería de datos/IA/ML",
+        "median": 67000,
+        "n": 31
+      },
+      {
+        "label": "Project management",
+        "median": 56500,
+        "n": 26
+      },
+      {
+        "label": "QA-Testing",
+        "median": 53034,
+        "n": 34
+      },
+      {
+        "label": "Analista de software/datos",
+        "median": 49500,
+        "n": 26
+      },
+      {
+        "label": "UX-UI Design",
+        "median": 39500,
+        "n": 20
+      },
+      {
+        "label": "Soporte técnico",
+        "median": 30000,
+        "n": 11
+      }
+    ],
+    "stack": [
+      {
+        "label": "Ruby",
+        "median": 115000,
+        "n": 6
+      },
+      {
+        "label": "Java",
+        "median": 85000,
+        "n": 41
+      },
+      {
+        "label": "C#",
+        "median": 75000,
+        "n": 49
+      },
+      {
+        "label": "Python",
+        "median": 67000,
+        "n": 49
+      },
+      {
+        "label": "JavaScript",
+        "median": 57000,
+        "n": 35
+      },
+      {
+        "label": "C-C++",
+        "median": 50500,
+        "n": 6
+      },
+      {
+        "label": "PHP",
+        "median": 45000,
+        "n": 8
+      }
+    ],
+    "cloud": [
+      {
+        "label": "Google Cloud",
+        "median": 82500,
+        "n": 14
+      },
+      {
+        "label": "AWS",
+        "median": 80000,
+        "n": 89
+      },
+      {
+        "label": "Azure",
+        "median": 65000,
+        "n": 59
+      },
+      {
+        "label": "IBM",
+        "median": 60000,
+        "n": 6
+      }
+    ],
+    "city": [
+      {
+        "label": "CDMX",
+        "median": 80000,
+        "n": 204
+      },
+      {
+        "label": "Aguascalientes",
+        "median": 71600,
+        "n": 21
+      },
+      {
+        "label": "Querétaro",
+        "median": 67000,
+        "n": 23
+      },
+      {
+        "label": "Guadalajara",
+        "median": 66000,
+        "n": 83
+      },
+      {
+        "label": "Mérida",
+        "median": 57500,
+        "n": 12
+      },
+      {
+        "label": "Puebla",
+        "median": 54000,
+        "n": 10
+      },
+      {
+        "label": "Monterrey",
+        "median": 49400,
+        "n": 66
+      },
+      {
+        "label": "San Luis Potosí",
+        "median": 35000,
+        "n": 12
+      }
+    ],
+    "modality": {
+      "remote_median": 71500,
+      "remote_n": 240,
+      "onsite_median": 42150,
+      "onsite_n": 84,
+      "modalities": [
+        {
+          "label": "Totalmente remoto",
+          "median": 71500,
+          "n": 240
+        },
+        {
+          "label": "Modelo híbrido (1-2 días por semana presencial)",
+          "median": 63226,
+          "n": 234
+        },
+        {
+          "label": "Totalmente presencial",
+          "median": 42150,
+          "n": 84
+        }
+      ]
+    },
+    "equity": {
+      "with_median": 95000,
+      "with_n": 98,
+      "without_median": 60000,
+      "without_n": 440,
+      "share_pct": 18
+    },
+    "learning": [
+      {
+        "label": "En.el trabajo",
+        "median": 70000,
+        "n": 87
+      },
+      {
+        "label": "En la escuela",
+        "median": 68000,
+        "n": 329
+      },
+      {
+        "label": "A través de cursos en línea",
+        "median": 57000,
+        "n": 51
+      },
+      {
+        "label": "En un bootcamp",
+        "median": 56000,
+        "n": 32
+      },
+      {
+        "label": "No sé desarrollar software",
+        "median": 46000,
+        "n": 54
+      }
+    ],
+    "degree": [
+      {
+        "label": "Maestría",
+        "median": 80000,
+        "n": 147
+      },
+      {
+        "label": "Doctorado",
+        "median": 75000,
+        "n": 19
+      },
+      {
+        "label": "Preparatoria",
+        "median": 65000,
+        "n": 19
+      },
+      {
+        "label": "Licenciatura (graduado)",
+        "median": 60000,
+        "n": 348
+      },
+      {
+        "label": "Licenciatura (en curso)",
+        "median": 50000,
+        "n": 17
+      },
+      {
+        "label": "Carrera técnica",
+        "median": 31180,
+        "n": 8
+      }
+    ],
+    "certs": {
+      "with_median": 68000,
+      "with_n": 279,
+      "without_median": 60000,
+      "without_n": 279,
+      "pct_delta": 13
+    },
+    "company_size": [
+      {
+        "label": "1001–5000",
+        "median": 85000,
+        "n": 93
+      },
+      {
+        "label": "5000+",
+        "median": 75000,
+        "n": 128
+      },
+      {
+        "label": "201–1000",
+        "median": 64000,
+        "n": 153
+      },
+      {
+        "label": "11–50",
+        "median": 60000,
+        "n": 63
+      },
+      {
+        "label": "51–200",
+        "median": 55500,
+        "n": 98
+      },
+      {
+        "label": "1–10",
+        "median": 30000,
+        "n": 23
+      }
+    ],
+    "experience": [
+      {
+        "label": "0-2",
+        "median": 22000,
+        "n": 54
+      },
+      {
+        "label": "3-5",
+        "median": 40000,
+        "n": 97
+      },
+      {
+        "label": "6-10",
+        "median": 63000,
+        "n": 137
+      },
+      {
+        "label": "11-20",
+        "median": 90000,
+        "n": 178
+      },
+      {
+        "label": "20+",
+        "median": 80000,
+        "n": 90
+      }
+    ],
+    "english_mult": {
+      "mult": 2.2,
+      "ci": [
+        1.7,
+        2.7
+      ]
+    }
+  },
+  "gender": {
+    "raw": {
+      "men_median": 75000,
+      "women_median": 47250,
+      "gap_pct": 37,
+      "ci_low": 29,
+      "ci_high": 46,
+      "women_n": 212,
+      "men_n": 341
+    },
+    "by_tier": [
+      {
+        "tier": "Medio",
+        "men_median": 45336,
+        "women_median": 36250,
+        "gap_pct": 20,
+        "men_n": 38,
+        "women_n": 60
+      },
+      {
+        "tier": "Senior",
+        "men_median": 80000,
+        "women_median": 60000,
+        "gap_pct": 25,
+        "men_n": 167,
+        "women_n": 79
+      },
+      {
+        "tier": "Gerente",
+        "men_median": 87000,
+        "women_median": 70000,
+        "gap_pct": 20,
+        "men_n": 48,
+        "women_n": 15
+      }
+    ],
+    "band": [
+      {
+        "label": "Junior / Medio",
+        "men_median": 34000,
+        "women_median": 31000,
+        "gap_pct": 9,
+        "men_n": 57,
+        "women_n": 90
+      },
+      {
+        "label": "Senior+",
+        "men_median": 83600,
+        "women_median": 63453,
+        "gap_pct": 24,
+        "men_n": 279,
+        "women_n": 117
+      }
+    ],
+    "vanishing": [
+      {
+        "tier": "Junior",
+        "women_share": 61,
+        "n": 49
+      },
+      {
+        "tier": "Medio",
+        "women_share": 61,
+        "n": 99
+      },
+      {
+        "tier": "Senior",
+        "women_share": 32,
+        "n": 252
+      },
+      {
+        "tier": "Staff-Principal",
+        "women_share": 20,
+        "n": 40
+      },
+      {
+        "tier": "Gerente",
+        "women_share": 25,
+        "n": 64
+      },
+      {
+        "tier": "Director",
+        "women_share": 41,
+        "n": 29
+      }
+    ],
+    "senior_plus_share": 30,
+    "participation": 38,
+    "oaxaca": {
+      "explained_pct": 82,
+      "unexplained_pct": 18,
+      "residual_pct": 10,
+      "log_gap": 0.43,
+      "senior_woman_median": 60000,
+      "penalty_mo": 6800,
+      "penalty_yr": 82000
+    },
+    "foreign_gap": {
+      "men_median": 109000,
+      "women_median": 50000,
+      "gap_pct": 54,
+      "women_n": 30,
+      "men_n": 49,
+      "access_m": 14,
+      "access_w": 14
+    },
+    "pause": {
+      "women_pct": 16,
+      "men_pct": 7,
+      "women_n": 230,
+      "men_n": 382,
+      "ratio": 2.3
+    },
+    "lived": {
+      "harassment_pct": 25,
+      "harassment_freq_n": 10,
+      "harassment_n": 177,
+      "noprogram_pct": 65,
+      "noprogram_n": 178,
+      "isolation_pct": 55,
+      "isolation_median": 20,
+      "isolation_n": 161
+    },
+    "origin": {
+      "first_program_w": 17,
+      "first_program_m": 17,
+      "computer_w": 51,
+      "computer_m": 48
+    },
+    "access": {
+      "equity_m": 16,
+      "equity_w": 17,
+      "foreign_m": 14,
+      "foreign_w": 14,
+      "remote_m": 41,
+      "remote_w": 38,
+      "airole_m": 37,
+      "airole_w": 17
+    },
+    "rigor": {
+      "sensitivity": [
+        {
+          "spec": "Sin ajuste",
+          "penalty": 35
+        },
+        {
+          "spec": "+ experiencia",
+          "penalty": 25
+        },
+        {
+          "spec": "+ inglés",
+          "penalty": 22
+        },
+        {
+          "spec": "+ nivel",
+          "penalty": 15
+        },
+        {
+          "spec": "+ rol",
+          "penalty": 10
+        }
+      ],
+      "fx": [
+        {
+          "fx": 17,
+          "penalty": 10
+        },
+        {
+          "fx": 18.5,
+          "penalty": 10
+        },
+        {
+          "fx": 20,
+          "penalty": 10
+        }
+      ],
+      "adjusted_ci": [
+        0,
+        20
+      ],
+      "bounds_lower": 10,
+      "bounds_upper": 37
+    }
+  },
+  "ai": {
+    "coding_split": {
+      "agentic_pct": 50,
+      "support_pct": 30,
+      "complementary_pct": 20,
+      "agentic_n": 94,
+      "n": 189
+    },
+    "agentic_pay": {
+      "agent_median": 79500,
+      "rest_median": 60000,
+      "pct": 32,
+      "ci": [
+        8,
+        54
+      ]
+    },
+    "adoption_by_gender": {
+      "women_pct": 32,
+      "women_n": 40,
+      "men_pct": 50,
+      "men_n": 126
+    },
+    "adoption_by_exp": [
+      {
+        "bracket": "0-3",
+        "pct": 60,
+        "n": 10
+      },
+      {
+        "bracket": "4-6",
+        "pct": 31,
+        "n": 32
+      },
+      {
+        "bracket": "7-10",
+        "pct": 51,
+        "n": 47
+      },
+      {
+        "bracket": "11-15",
+        "pct": 48,
+        "n": 42
+      },
+      {
+        "bracket": "16+",
+        "pct": 54,
+        "n": 63
+      }
+    ],
+    "roles": {
+      "count": 54,
+      "men": 37,
+      "women": 17,
+      "top": {
+        "GenAI-LLM-Agent Engineer": 16,
+        "AI product manager": 11,
+        "ML Engineer": 6,
+        "Prompt manager": 6
+      }
+    },
+    "confidence": {
+      "mean": 3.4,
+      "worried_pct": 16,
+      "n": 493
+    }
+  },
+  "human": {
+    "finances": {
+      "no_savings_pct": 15,
+      "savings_median": 10,
+      "save10plus_pct": 70,
+      "no_retirement_pct": 21,
+      "no_ss_pct": 10,
+      "edu_debt_pct": 13,
+      "second_job_pct": 13,
+      "n": 513
+    },
+    "vacations": {
+      "median": 16,
+      "le12_pct": 32,
+      "n": 534
+    },
+    "neurodiv": {
+      "pct": 15,
+      "n": 73,
+      "no_support_pct": 70,
+      "no_support_n": 48,
+      "support_answered": 69
+    },
+    "disability": {
+      "pct": 6,
+      "n": 29
+    }
+  }
+}
