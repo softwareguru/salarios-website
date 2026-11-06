@@ -26,6 +26,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 {{- $css := resources.Get "css/techpulse.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- $fnd := resources.Get "css/hallazgos.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $fnd.RelPermalink }}" integrity="{{ $fnd.Data.Integrity }}">
 {{- partial "head/google-tag-manager.html" . }}
 {{- partial "head/google-tag.html" . }}
 </head>
@@ -41,7 +43,7 @@
     </a>
     <div class="nav-links" id="nav-menu">
       <a class="hide-sm" href="{{ "" | relURL }}">Inicio</a>
-      <a class="hide-sm" href="{{ "dashboard/" | relURL }}" aria-current="page" style="color:var(--tx)">Dashboard</a>
+      <a class="hide-sm" href="{{ "dashboard/" | relURL }}" aria-current="page" style="color:var(--tx)">Hallazgos</a>
       <a class="hide-sm" href="{{ "about/" | relURL }}">Acerca de</a>
       <span class="nav-controls">
         <button class="theme-btn" id="theme-toggle" type="button" aria-label="Cambiar entre tema claro y oscuro">
@@ -73,123 +75,282 @@
   </defs>
 </svg>
 
-<header class="page-head" id="top">
-  <span id="main" tabindex="-1"></span>
-  <div class="wrap">
-    <p class="eyebrow">Informaci&oacute;n para la comunidad</p>
-    <h1>Lo que aprendemos vuelve al mercado.</h1>
-    <p class="lead">
-      Los resultados agregados est&aacute;n disponibles conforme avanza la encuesta.
-      Puedes explorarlos por rol, seniority y ubicaci&oacute;n, o consultar los datos
-      anonimizados para realizar tu propio an&aacute;lisis.
-    </p>
+<div id="hallazgos">
+<span id="main" tabindex="-1"></span>
+<div class="progress" id="progress"></div>
 
-    <div class="stats">
-      <div class="stat s-violet">
-        <div class="v">Desde 2010</div>
-        <div class="k">Distintas ediciones observando el mercado tech</div>
-      </div>
-      <div class="stat s-lime">
-        <div class="v">9 a 11<span style="font-size:.6em"> min</span></div>
-        <div class="k">Tiempo estimado para responder</div>
-      </div>
-      <div class="stat s-coral">
-        <div class="v">Abiertos</div>
-        <div class="k">Resultados disponibles para la comunidad</div>
-      </div>
-      <div class="stat s-lav">
-        <div class="v">Sin paywall</div>
-        <div class="k">No hay reporte premium ni contenido de pago</div>
-      </div>
-    </div>
-  </div>
+<!-- HERO -->
+<header class="hero wrap">
+  <div class="kick rv">Encuesta de Salarios · corte de México</div>
+  <h1 class="rv d1">Cuánto vale programar en México</h1>
+  <div class="sub rv d2">Una sola historia, contada con los números de quienes respondieron.</div>
+  <div class="scroll-hint rv d3">Baja para leerla</div>
 </header>
 
-<section style="padding-top:24px;padding-bottom:40px">
-  <div class="wrap">
+<!-- OPENER: el número -->
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">El número</div>
+  <h2 class="rv d1">Todo empieza en la mediana.</h2>
+  <div class="big-stat rv d2" id="heroMedian">$63,750</div>
+  <div class="big-sub rv d2">al mes, salario base bruto. Es el centro del mercado. La mitad gana más, la mitad gana menos.</div>
+  <div class="body rv d3">
+    <p class="lead">Ese número es el punto de partida. Lo interesante es lo que lo mueve hacia arriba, y lo que esconde.</p>
+  </div>
+  <div class="note rv d3" id="heroNote"></div>
+</section>
 
-    <div class="progress-card">
-      <div class="progress-top">
-        <h2>C&oacute;mo interpretar lo que ves</h2>
-      </div>
-      <p class="bar-note" style="margin-top:14px">
-        La encuesta sigue abierta, as&iacute; que las cifras de este tablero son
-        provisionales y se actualizan conforme llegan respuestas. Los cortes con
-        m&aacute;s participaci&oacute;n, los roles y ciudades m&aacute;s comunes, son los que
-        primero alcanzan una lectura estable; los cortes finos necesitan m&aacute;s
-        volumen. <b>Cada respuesta acerca ese umbral.</b>
-      </p>
-    </div>
+<!-- ACT 1 -->
+<section class="act" style="background:var(--surface)">
+  <div class="num rv">Acto 1</div>
+  <h2 class="rv d1">Lo que sube el número</h2>
+  <div class="kicker rv d2">Las palancas que separan un sueldo del siguiente.</div>
+  <div class="bar rv d2" style="background:var(--violet)"></div>
+</section>
 
-    <div class="board-wrap">
-      <div class="board-bar">
-        <span class="who">Tablero interactivo &middot; Looker Studio</span>
-        <a class="btn btn-ghost btn-sm" href="https://lookerstudio.google.com/reporting/4bbcc4b4-9f31-4ac9-b308-95ccecfc9859/page/1TI3F" target="_blank" rel="noopener noreferrer">
-          Abrir en pantalla completa
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 5H5a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-5"/></svg>
-        </a>
-      </div>
-      <div class="board-frame">
-        <iframe class="board-embed"
-                title="Resultados de SG Tech Pulse 2026"
-                src="https://lookerstudio.google.com/embed/reporting/4bbcc4b4-9f31-4ac9-b308-95ccecfc9859/page/1TI3F"
-                loading="lazy" allowfullscreen
-                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-      </div>
-    </div>
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">La palanca de fondo</div>
+  <h2 class="rv d1">La experiencia es el motor.</h2>
+  <p class="lede rv d1">De los primeros años a la madurez, el sueldo se multiplica por cuatro.</p>
+  <div class="fig rv d2"><div data-fig="experience"></div><div class="cap" data-cap="experience"></div></div>
+  <div class="body rv d3"><p>El salto grande no está al entrar. Está entre los primeros años y la década de experiencia, donde el sueldo deja de ser de entrada y se vuelve de oficio.</p></div>
+</section>
 
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Inglés</div>
+  <h2 class="rv d1">El inglés es la palanca más cara de ignorar.</h2>
+  <p class="lede rv d1">Quien trabaja todo el tiempo en inglés gana más del doble que quien nunca lo usa.</p>
+  <div class="fig rv d2"><div data-fig="english"></div><div class="cap" data-cap="english"></div></div>
+  <div class="body rv d3"><p>No es el nivel de inglés en un certificado. Es el uso diario. El salto se concentra entre usarlo de vez en cuando y usarlo en juntas y correos.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">La economía Deel</div>
+  <h2 class="rv d1">Trabajar para fuera paga una prima.</h2>
+  <div class="fig rv d2"><div data-fig="foreign"></div><div class="cap" data-cap="foreign"></div></div>
+  <div class="body rv d3"><p>Una parte del mercado ya cobra de empresas extranjeras, muchas veces fuera de la nómina local, a través de intermediarios como Deel o Remote. Es el mejor aumento disponible sin cambiar de ciudad.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Stack</div>
+  <h2 class="rv d1">El lenguaje que usas marca tu sueldo.</h2>
+  <p class="lede rv d1">Entre el lenguaje mejor pagado y el peor pagado hay una diferencia enorme.</p>
+  <div class="fig rv d2"><div data-fig="stack"></div><div class="cap" data-cap="stack"></div></div>
+  <div class="body rv d3"><p>No es que un lenguaje sea mejor que otro. Es que cada lenguaje vive en un tipo de empresa y de proyecto. El stack es una pista del mercado donde trabajas.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Código postal</div>
+  <h2 class="rv d1">Tu sueldo depende de dónde vives.</h2>
+  <div class="fig rv d2"><div data-fig="city"></div><div class="cap" data-cap="city"></div></div>
+  <div class="body rv d3"><p>La Ciudad de México encabeza la lista por un margen amplio. El trabajo remoto prometía borrar esta diferencia. Todavía no lo hace.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Oficina o remoto</div>
+  <h2 class="rv d1">Volver a la oficina cuesta caro.</h2>
+  <div class="fig rv d2"><div data-fig="modality"></div><div class="cap" data-cap="modality"></div></div>
+  <div class="body rv d3"><p>Quien trabaja de forma totalmente remota reporta una mediana muy por encima de quien va todos los días a la oficina. El remoto no es solo comodidad. Es acceso a empleadores que pagan más.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Acciones</div>
+  <h2 class="rv d1">El club de las acciones.</h2>
+  <div class="fig rv d2"><div data-fig="equity"></div><div class="cap" data-cap="equity"></div></div>
+  <div class="body rv d3"><p>Recibir compensación en acciones es raro, y marca una frontera. Quien está dentro reporta una mediana muy superior. Es un club chico y bien pagado.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Formación</div>
+  <h2 class="rv d1">La maestría sí paga. El bootcamp todavía no.</h2>
+  <div class="fig rv d2"><div data-fig="degree"></div><div class="cap" data-cap="degree"></div></div>
+  <div class="body rv d3">
+    <p>El nivel educativo más alto sigue moviendo el sueldo. La maestría se despega de la licenciatura.</p>
+    <p>Por cómo aprendiste a programar, aprender en el trabajo o en la escuela paga más que un bootcamp o un curso en línea.</p>
+  </div>
+  <div class="fig rv d3"><div data-fig="learning"></div><div class="cap" data-cap="learning"></div></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Tamaño de empresa</div>
+  <h2 class="rv d1">El castigo de la empresa chica.</h2>
+  <div class="fig rv d2"><div data-fig="company_size"></div><div class="cap" data-cap="company_size"></div></div>
+  <div class="body rv d3"><p>La empresa más chica paga la mediana más baja de todas. El tamaño compra estructura, presupuesto y rangos salariales más altos.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Certificaciones</div>
+  <h2 class="rv d1">Certificarse ayuda, pero poco.</h2>
+  <div class="fig rv d2"><div data-fig="certs"></div><div class="cap" data-cap="certs"></div></div>
+  <div class="body rv d3"><p>Tener al menos una certificación activa se asocia con un sueldo más alto. La diferencia es real pero modesta. No es la transformación que venden los cursos.</p></div>
+</section>
+
+<!-- ACT 2 -->
+<section class="act" style="background:var(--women); color:var(--on-accent)">
+  <div class="num rv" style="color:rgba(255,255,255,.7)">Acto 2</div>
+  <h2 class="rv d1">Lo que el número esconde</h2>
+  <div class="kicker rv d2" style="color:rgba(255,255,255,.88)">La misma mediana cuenta dos historias distintas según el género.</div>
+  <div class="bar rv d2" style="background:var(--on-accent)"></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">La brecha</div>
+  <h2 class="rv d1">Hombres y mujeres no parten del mismo número.</h2>
+  <div class="big-stat coral rv d2" id="rawGap">37%</div>
+  <div class="big-sub rv d2" id="rawGapSub"></div>
+  <div class="body rv d3"><p>Es la brecha cruda de salario base, sin ajustar por nada. El intervalo de confianza no toca el cero. La diferencia es real.</p></div>
+  <div class="note rv d3" data-cap="raw"></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">La desaparición</div>
+  <h2 class="rv d1">Mayoría en el medio. Se evaporan rumbo a la cima.</h2>
+  <div class="fig rv d2"><div data-fig="vanishing"></div><div class="cap" data-cap="vanishing"></div></div>
+  <div class="body rv d3"><p>Las mujeres son mayoría en los niveles de entrada y medios. Arriba, apenas una de cada tres. El conteo se adelgaza justo donde el sueldo crece.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">El costo se acumula</div>
+  <h2 class="rv d1">La brecha se ensancha hacia el nivel senior.</h2>
+  <div class="fig rv d2"><div data-fig="scissors"></div><div class="cap" data-cap="scissors"></div></div>
+  <div class="body rv d3"><p>En el nivel medio la distancia ya existe. Hacia senior se ensancha. Cada peldaño que suben, se les paga menos que a sus pares hombres.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">De dónde viene la brecha</div>
+  <h2 class="rv d1">La brecha está en la escalera.</h2>
+  <p class="lede rv d1">Empareja a un hombre y una mujer y mira cuánto de la brecha sobrevive a cada control.</p>
+  <div class="fig rv d2"><div data-fig="gender_ladder"></div><div class="cap" data-cap="gender_ladder"></div></div>
+  <div class="body rv d3">
+    <p>La brecha cae de <b>37%</b> a <b>~10%</b> conforme se agregan controles. El salto más grande llega al emparejar <b>nivel y rol</b>. Y eso es justo la desaparición: a las mujeres se les mantiene en los peldaños de abajo, peor pagados.</p>
+    <p class="lead" id="boundsLine"></p>
   </div>
 </section>
 
-<section class="alt" style="padding:64px 0;position:relative;overflow:hidden">
-  <img class="watermark" src="{{ ((resources.Get "images/brand/isotipo-outline.png").Resize "560x webp q78").RelPermalink }}" width="380" height="377" loading="lazy" alt="" aria-hidden="true" style="right:-100px;bottom:-40px">
-  <div class="wrap">
-    <div class="sec-head" style="margin-bottom:28px">
-      <p class="eyebrow">C&oacute;mo leer esto</p>
-      <h2 style="font-size:clamp(28px,4vw,40px)">Tres advertencias honestas.</h2>
-    </div>
-    <div class="reading">
-      <article class="read-card r-1">
-        <span class="tag">Antes de depurar</span>
-        <h3>Sin depurar</h3>
-        <p>
-          Las gr&aacute;ficas se generan antes de la limpieza, as&iacute; que puedes encontrar
-          valores at&iacute;picos o capturas err&oacute;neas. El reporte final s&iacute; pasa por depuraci&oacute;n.
-        </p>
-      </article>
-      <article class="read-card r-2">
-        <span class="tag">Representatividad</span>
-        <h3>No todos los cortes pesan igual</h3>
-        <p>
-          Un rol con 400 respuestas dice mucho; uno con 7 no dice casi nada.
-          Revisa el tama&ntilde;o de cada grupo antes de sacar conclusiones.
-        </p>
-      </article>
-      <article class="read-card r-3">
-        <span class="tag">En movimiento</span>
-        <h3>Las cifras van a cambiar</h3>
-        <p>
-          Mientras la encuesta siga abierta, cada n&uacute;mero es provisional.
-          Si vas a citarlo, anota la fecha de consulta.
-        </p>
-      </article>
-    </div>
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">La salida que no rescata</div>
+  <h2 class="rv d1">El empleo extranjero repite la brecha.</h2>
+  <div class="fig rv d2"><div data-fig="foreign_gap"></div><div class="cap" data-cap="foreign_gap"></div></div>
+  <div class="body rv d3"><p>Las mujeres llegan al empleo extranjero a la misma tasa que los hombres. El acceso ya está parejo. Pero ahí la brecha es todavía más ancha que en el mercado local. La prima transfronteriza no cierra la diferencia, la repite.</p></div>
+</section>
 
-    <div class="raw">
-      <div>
-        <h3>Ll&eacute;vate los datos</h3>
-        <p>
-          Los datos anonimizados est&aacute;n disponibles sin registro ni costo, para que
-          reproduzcas el an&aacute;lisis o construyas el tuyo.
-        </p>
-      </div>
-      <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1HHaA8ezZ7odVt_cLneeo-QAqcd-1zLWBu42bmVJgZak/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-        Consultar los datos
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 12l6 6 6-6M4 20h16"/></svg>
-      </a>
-    </div>
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">La pausa de carrera</div>
+  <h2 class="rv d1">Una pausa que reinicia el reloj.</h2>
+  <div class="fig rv d2"><div data-fig="pause"></div><div class="cap" data-cap="pause"></div></div>
+  <div class="body rv d3"><p>Las mujeres interrumpen o reducen su carrera por más de diez meses, por motivos familiares o personales, a más del doble de la tasa de los hombres. En una industria que mide la antigüedad en años continuos, una pausa no cuesta esos meses. Reinicia el reloj del ascenso justo cuando se decide el salto a senior.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">El aislamiento</div>
+  <h2 class="rv d1">La excepción en su propia sala.</h2>
+  <div class="fig rv d2"><div data-fig="isolation"></div><div class="cap" data-cap="isolation"></div></div>
+  <div class="body rv d3">
+    <p>Más de la mitad de las mujeres son el 20% o menos de su equipo. Son minoría clara donde trabajan.</p>
+    <ul class="doc" id="livedList"></ul>
   </div>
 </section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">El mito del pipeline</div>
+  <h2 class="rv d1">No es un problema de entrada.</h2>
+  <p class="lede rv d1">Los orígenes ya se emparejaron.</p>
+  <div class="body rv d2">
+    <ul class="doc" id="originList"></ul>
+    <p class="lead">Las mujeres no entran más tarde ni con menos exposición. Se les detiene abajo de los niveles senior. Es un problema de pago y de ascenso, no de intake.</p>
+  </div>
+</section>
+
+<!-- ACT 3 -->
+<section class="act" style="background:var(--violet); color:var(--on-accent)">
+  <div class="num rv" style="color:rgba(255,255,255,.7)">Acto 3</div>
+  <h2 class="rv d1">La nueva forma del trabajo</h2>
+  <div class="kicker rv d2" style="color:rgba(255,255,255,.9)">La IA ya cambió cómo se escribe el código. Y arranca sesgada.</div>
+  <div class="bar rv d2" style="background:var(--lime)"></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Cómo se programa hoy</div>
+  <h2 class="rv d1">Media industria ya casi no escribe código a mano.</h2>
+  <div class="fig rv d2"><div data-fig="coding_split"></div><div class="cap" data-cap="coding_split"></div></div>
+  <div class="body rv d3"><p>La mitad de quienes crean código dicen que sobre todo instruyen a los agentes y revisan el resultado. Escribir cada línea a mano ya es la minoría.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Y paga</div>
+  <h2 class="rv d1">Trabajar con agentes se asocia con más sueldo.</h2>
+  <div class="fig rv d2"><div data-fig="agentic_pay"></div><div class="cap" data-cap="agentic_pay"></div></div>
+  <div class="body rv d3"><p>Quienes trabajan sobre todo instruyendo agentes reportan una mediana más alta. Es descriptivo, no causal. Pero la dirección es clara.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">La ola arranca sesgada</div>
+  <h2 class="rv d1">Programar con agentes es, por ahora, cosa de hombres.</h2>
+  <div class="fig rv d2"><div data-fig="ai_gender"></div><div class="cap" data-cap="ai_gender"></div></div>
+  <div class="body rv d3"><p>Entre quienes desarrollan software, la mitad de los hombres ya instruye a los agentes, contra un tercio de las mujeres. La brecha sobrevive al comparar el mismo rol. La nueva ola empieza inclinada.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">El puesto que no existía</div>
+  <h2 class="rv d1">Un oficio nuevo, ya con nombre.</h2>
+  <div class="big-stat rv d2" id="aiRoles">54</div>
+  <div class="big-sub rv d2">personas ya tienen un puesto centrado en IA. Ingeniero de agentes, product manager de IA, prompt manager. Hace tres años no existían en la encuesta.</div>
+  <div class="body rv d3"><p>Y aquí también hay sesgo: en estos puestos, los hombres superan a las mujeres por más de dos a uno.</p></div>
+  <div class="note rv d3" data-cap="roles"></div>
+</section>
+
+<!-- ACT 4 -->
+<section class="act" style="background:var(--surface)">
+  <div class="num rv">Acto 4</div>
+  <h2 class="rv d1">La cuenta humana</h2>
+  <div class="kicker rv d2">Buen sueldo no siempre significa buena situación.</div>
+  <div class="bar rv d2" style="background:var(--coral)"></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Finanzas personales</div>
+  <h2 class="rv d1">Ganan bien, pero no siempre llegan al retiro.</h2>
+  <div class="fig rv d2"><div data-fig="finances"></div><div class="cap" data-cap="finances"></div></div>
+  <div class="body rv d3"><p>El sector es formal y los sueldos son altos para el país. Aun así, uno de cada cinco no aporta a un fondo de retiro, y una parte no logra ahorrar nada. El sueldo alto no se traduce solo en seguridad futura.</p></div>
+</section>
+
+<section class="scene wrap" data-scene>
+  <div class="eyebrow rv">Inclusión</div>
+  <h2 class="rv d1">Neurodivergentes, y solos.</h2>
+  <div class="fig rv d2"><div data-fig="neurodiv"></div><div class="cap" data-cap="neurodiv"></div></div>
+  <div class="body rv d3"><p>Una de cada siete personas reporta una neurodivergencia diagnosticada. De ellas, la mayoría dice que su empresa no la apoya para que no afecte su trabajo. El talento está. El acompañamiento no.</p></div>
+</section>
+
+<!-- CLOSE -->
+<section class="scene wrap methwith" data-scene style="border-radius:0">
+  <div class="eyebrow rv">Antes de cerrar</div>
+  <h2 class="rv d1">Qué sí dice esto, y qué no.</h2>
+  <div class="body rv d2">
+    <ul class="doc">
+      <li>La muestra es autoseleccionada y preliminar. Describe a quienes quisieron responder, no al mercado entero, y no se puede ponderar a la población.</li>
+      <li>La mayoría de las comparaciones son asociaciones, no efectos causales. Un lenguaje, una ciudad o una certificación marcan dónde trabajas, no son palancas que acciones solas.</li>
+      <li>Mostramos cerca de treinta cortes. Algunos son exploratorios. Las celdas chicas, con menos de unos 15 casos, son direccionales y pueden ser ruido.</li>
+      <li>Donde importa, mostramos intervalos de confianza al 95%. El resto son estimaciones puntuales.</li>
+      <li>La brecha de género es el único punto con un modelo de controles. El efecto queda acotado entre ~10% emparejando todo y 37% sin ajustar, y la parte que ni el nivel ni el rol explican tiene un intervalo que toca el cero. No la llamamos discriminación probada.</li>
+      <li>Los salarios en dólares se convierten a pesos con un tipo de cambio de 18.5. Las conclusiones se sostienen entre 17 y 20.</li>
+    </ul>
+    <p>Todo número de esta página se reproduce desde el volcado de respuestas. Cambia el volcado, cambian los números.</p>
+  </div>
+</section>
+
+
+<div class="cierre">
+  <div class="mono" id="footNote"></div>
+  <div class="thanks">
+    <div class="thanks-note">Gracias a Improving, Mobiik y Svitla por difundir esta encuesta en la comunidad tech.</div>
+    <div class="thanks-logos">
+      <span class="chip"><img src="{{ "dashboard/logos/" | relURL }}LogoImproving.png" alt="Improving"></span>
+      <span class="chip"><img src="{{ "dashboard/logos/" | relURL }}LogoMobiik.png" alt="Mobiik"></span>
+      <span class="chip"><img src="{{ "dashboard/logos/" | relURL }}LogoSvitla.png" alt="Svitla"></span>
+    </div>
+  </div>
+</div>
+</div>
+
 
 <section style="padding:64px 0 84px">
   <div class="wrap">
@@ -228,6 +389,10 @@
     </div>
   </div>
 </footer>
+<script src="{{ "dashboard/charts.js" | relURL }}"></script>
+<script src="{{ "dashboard/data.js" | relURL }}"></script>
+{{- $fjs := resources.Get "js/hallazgos.js" | minify | fingerprint }}
+<script src="{{ $fjs.RelPermalink }}" integrity="{{ $fjs.Data.Integrity }}" defer></script>
 {{- $js := resources.Get "js/techpulse.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 {{ partial "script-tracker.html" . }}
